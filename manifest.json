@@ -1,0 +1,24 @@
+{
+  "name": "Anfibios Colombianos — Dataverso de Sonidos",
+  "short_name": "Anfibios CO",
+  "description": "Primer visor colombiano de datos acústicos de anuros.",
+  "start_url": "/sounds/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#1C71B8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "Imagenes/icono_app_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "Imagenes/icono_app_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
