@@ -1,6 +1,6 @@
 {
   "name": "Dataverso",
-  "short_name": "Anfibios CO",
+  "short_name": "Dataverso",
   "description": "Primer visor colombiano de datos acústicos de anuros.",
   "start_url": "/amphibians/",
   "display": "standalone",
