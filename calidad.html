@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calidad de los datos — Anfibios Colombianos</title>
+  <meta name="theme-color" content="#1C71B8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:#1C71B8;--blue-dark:#145290;--blue-light:#E8F1FA;--blue-mid:#5A9FD4;
+      --black:#0f0f0f;--ink:#1a1a1a;--muted:#555;--subtle:#888;--border:#dde3ea;
+      --bg:#ffffff;--bg-off:#f6f8fb;
+      --ff-display:'Fraunces',Georgia,serif;--ff-body:'Source Sans 3',system-ui,sans-serif;
+      --radius:10px;--max-w:860px;--nav-h:60px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ff-body);font-size:17px;line-height:1.75;color:var(--ink);background:var(--bg)}
+    img{max-width:100%;display:block}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ── Nav ── */
+    nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:var(--black);display:flex;align-items:center;padding:0 2rem;gap:2rem}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+    .nav-logo img{height:36px;width:auto;border-radius:50%}
+    .nav-logo span{font-family:var(--ff-display);font-size:0.95rem;font-weight:400;color:#fff;line-height:1.2}
+    .nav-links{display:flex;align-items:center;list-style:none;margin-left:auto;gap:0}
+    .nav-links a{font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:0 0.9rem;text-decoration:none;transition:color .15s}
+    .nav-links a:hover{color:#fff}
+    .nav-links a.current{color:var(--blue-mid)}
+
+    /* ── Page header ── */
+    .page-header{background:var(--black);padding:3.5rem 2rem 3rem}
+    .page-header-inner{max-width:var(--max-w);margin:0 auto}
+    .page-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:0.6rem}
+    .page-title{font-family:var(--ff-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;color:#fff;line-height:1.15;margin-bottom:1rem}
+    .page-lead{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.65);max-width:580px;line-height:1.7}
+
+    /* ── Content ── */
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+    .content{padding:3.5rem 0 5rem}
+
+    /* ── Intro text ── */
+    .intro{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;max-width:720px}
+
+    /* ── Factor cards ── */
+    .factors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:3rem}
+    .factor-card{background:var(--bg-off);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.5rem;position:relative;overflow:hidden}
+    .factor-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue)}
+    .factor-num{font-family:var(--ff-display);font-size:2rem;font-weight:600;color:var(--blue-light);line-height:1;margin-bottom:0.5rem;opacity:0.6}
+    .factor-title{font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem;line-height:1.3}
+    .factor-text{font-size:0.88rem;color:var(--muted);line-height:1.7}
+
+    /* ── Closing ── */
+    .closing{background:var(--blue-light);border-radius:var(--radius);padding:1.5rem 1.8rem;border-left:3px solid var(--blue)}
+    .closing p{font-size:0.97rem;color:var(--ink);line-height:1.75}
+    .closing strong{color:var(--blue-dark)}
+
+    /* ── Footer ── */
+    .wave-divider{background:var(--black);padding:2rem 0;display:flex;justify-content:center;overflow:hidden}
+    .wave-divider img{max-width:300px;width:85%;opacity:0.85}
+    footer{background:var(--black);padding:3rem 2rem 2rem}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem}
+    .footer-brand{display:flex;align-items:flex-start;gap:12px}
+    .footer-brand img{height:44px;width:auto;opacity:0.75;flex-shrink:0}
+    .footer-brand-name{font-family:var(--ff-display);font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.8);line-height:1.3;margin-bottom:4px}
+    .footer-brand-sub{font-size:0.75rem;color:rgba(255,255,255,0.3)}
+    .footer-col-title{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.8rem}
+    .footer-col a{display:block;font-size:0.82rem;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:6px;transition:color .15s}
+    .footer-col a:hover{color:var(--blue-mid)}
+    .footer-bottom{max-width:var(--max-w);margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .footer-bottom span{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+    .footer-credits{font-size:0.75rem;color:rgba(255,255,255,0.25);text-align:right}
+    .footer-credits a{color:rgba(255,255,255,0.35)}
+    .footer-credits a:hover{color:var(--blue-mid)}
+
+    @media(max-width:680px){
+      nav{padding:0 1rem}
+      .nav-links a{padding:0 0.55rem;font-size:0.75rem}
+      .nav-logo span{display:none}
+      .page-header{padding:2.5rem 1.2rem 2rem}
+      .container{padding:0 1.2rem}
+      .factors{grid-template-columns:1fr}
+      .footer-inner{grid-template-columns:1fr;gap:1.5rem}
+      .footer-credits{text-align:left}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="Imagenes/logo_nov2024.png" alt="Logo Anfibios Colombianos">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="geografia.html">Geografía</a></li>
+      <li><a href="unete.html">Únete</a></li>
+      <li><a href="enlaces.html">Enlaces</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="page-eyebrow">Metodología</p>
+      <h1 class="page-title">Calidad de los datos</h1>
+      <p class="page-lead">Los datos acústicos en anuros, al igual que cualquier información biológica, están sujetos a factores que afectan su calidad y su utilidad para análisis posteriores.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container">
+
+      <div class="factors">
+        <div class="factor-card">
+          <div class="factor-num">01</div>
+          <div class="factor-title">Incertidumbre taxonómica</div>
+          <p class="factor-text">Muchas especies no pueden identificarse de manera confiable solo mediante observación. Es indispensable colectar un ejemplar de referencia (voucher) que permita confirmar o revisar la identificación. Gran parte de los audios en repositorios carecen de ejemplares asociados.</p>
+        </div>
+        <div class="factor-card">
+          <div class="factor-num">02</div>
+          <div class="factor-title">Calidad técnica de la grabación</div>
+          <p class="factor-text">La calidad varía considerablemente según el equipo utilizado. Existen registros obtenidos con dispositivos tan básicos como teléfonos móviles hasta grabadoras especializadas acopladas a micrófonos de alta sensibilidad.</p>
+        </div>
+        <div class="factor-card">
+          <div class="factor-num">03</div>
+          <div class="factor-title">Heterogeneidad en la experiencia del observador</div>
+          <p class="factor-text">Particularmente evidente en repositorios de ciencia ciudadana (e.g., iNaturalist, Xeno-Canto), donde participan usuarios con distintos niveles de conocimiento técnico.</p>
+        </div>
+        <div class="factor-card">
+          <div class="factor-num">04</div>
+          <div class="factor-title">Condiciones externas difíciles de controlar</div>
+          <p class="factor-text">El ruido ambiental, la superposición de cantos de otras especies o la distancia entre el emisor y el micrófono pueden reducir significativamente la calidad del registro.</p>
+        </div>
+      </div>
+
+      <div class="closing">
+        <p>Quienes utilicen audios provenientes de repositorios deben considerar cuidadosamente estas limitaciones. <strong>La ciencia no requiere ser perfecta, pero sí transparente:</strong> reconocer las debilidades de los datos disponibles es el primer paso para mejorar continuamente la calidad de las inferencias que hacemos en bioacústica.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wave-divider">
+    <img src="Imagenes/wave_2.png" alt="">
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Imagenes/logo_nov2024.png" alt="Logo">
+        <div>
+          <div class="footer-brand-name">Anfibios Colombianos<br>Dataverso de Sonidos</div>
+          <div class="footer-brand-sub">Grupo Herpetológico de Antioquia · 2026</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Secciones</div>
+        <a href="sobre.html">Sobre el dataverso</a>
+        <a href="geografia.html">Geografía</a>
+        <a href="unete.html">Únete</a>
+        <a href="enlaces.html">Enlaces</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contacto</div>
+        <a href="mailto:juanm.daza@udea.edu.co">juanm.daza@udea.edu.co</a>
+        <a href="https://github.com/colombian-sounds" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Grupo Herpetológico de Antioquia</span>
+      <div class="footer-credits">
+        Diseño y Programación: <a href="mailto:juanm.daza@udea.edu.co">Juan M. Daza</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
