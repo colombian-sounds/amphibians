@@ -2,7 +2,7 @@
   "name": "Dataverso",
   "short_name": "Anfibios CO",
   "description": "Primer visor colombiano de datos acústicos de anuros.",
-  "start_url": "/.index.html",
+  "start_url": "/amphibians/",
   "display": "standalone",
   "background_color": "#0f0f0f",
   "theme_color": "#1C71B8",
