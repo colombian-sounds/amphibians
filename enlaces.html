@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enlaces — Anfibios Colombianos</title>
+  <meta name="theme-color" content="#1C71B8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:#1C71B8;--blue-dark:#145290;--blue-light:#E8F1FA;--blue-mid:#5A9FD4;
+      --black:#0f0f0f;--ink:#1a1a1a;--muted:#555;--subtle:#888;--border:#dde3ea;
+      --bg:#ffffff;--bg-off:#f6f8fb;
+      --ff-display:'Fraunces',Georgia,serif;--ff-body:'Source Sans 3',system-ui,sans-serif;
+      --radius:10px;--max-w:860px;--nav-h:60px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ff-body);font-size:17px;line-height:1.75;color:var(--ink);background:var(--bg)}
+    img{max-width:100%;display:block}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ── Nav ── */
+    nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:var(--black);display:flex;align-items:center;padding:0 2rem;gap:2rem}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+    .nav-logo img{height:36px;width:auto;border-radius:50%}
+    .nav-logo span{font-family:var(--ff-display);font-size:0.95rem;font-weight:400;color:#fff;line-height:1.2}
+    .nav-links{display:flex;align-items:center;list-style:none;margin-left:auto;gap:0}
+    .nav-links a{font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:0 0.9rem;text-decoration:none;transition:color .15s}
+    .nav-links a:hover{color:#fff}
+    .nav-links a.current{color:var(--blue-mid)}
+
+    /* ── Page header ── */
+    .page-header{background:var(--black);padding:3.5rem 2rem 3rem}
+    .page-header-inner{max-width:var(--max-w);margin:0 auto}
+    .page-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:0.6rem}
+    .page-title{font-family:var(--ff-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;color:#fff;line-height:1.15;margin-bottom:1rem}
+    .page-lead{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.65);max-width:580px;line-height:1.7}
+
+    /* ── Content ── */
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+    .content{padding:3.5rem 0 5rem}
+
+    /* ── Section ── */
+    .section-block{margin-bottom:3.5rem}
+    .section-block + .section-block{border-top:1px solid var(--border);padding-top:3.5rem}
+    .section-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.4rem}
+    .section-title{font-family:var(--ff-display);font-size:1.25rem;font-weight:600;color:var(--black);margin-bottom:1.5rem}
+
+    /* ── Link cards ── */
+    .link-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .link-card{display:flex;flex-direction:column;padding:1.1rem 1.2rem;background:var(--bg-off);border:0.5px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:background .15s,border-color .15s,transform .15s}
+    .link-card:hover{background:var(--blue-light);border-color:#b8d4ee;transform:translateY(-1px);text-decoration:none}
+    .link-card-name{font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:3px}
+    .link-card-desc{font-size:0.82rem;color:var(--subtle);line-height:1.5}
+    .link-card-url{font-size:0.75rem;color:var(--blue-mid);margin-top:6px;word-break:break-all}
+
+    /* ── Footer ── */
+    .wave-divider{background:var(--black);padding:2rem 0;display:flex;justify-content:center;overflow:hidden}
+    .wave-divider img{max-width:300px;width:85%;opacity:0.85}
+    footer{background:var(--black);padding:3rem 2rem 2rem}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem}
+    .footer-brand{display:flex;align-items:flex-start;gap:12px}
+    .footer-brand img{height:44px;width:auto;opacity:0.75;flex-shrink:0}
+    .footer-brand-name{font-family:var(--ff-display);font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.8);line-height:1.3;margin-bottom:4px}
+    .footer-brand-sub{font-size:0.75rem;color:rgba(255,255,255,0.3)}
+    .footer-col-title{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.8rem}
+    .footer-col a{display:block;font-size:0.82rem;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:6px;transition:color .15s}
+    .footer-col a:hover{color:var(--blue-mid)}
+    .footer-bottom{max-width:var(--max-w);margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .footer-bottom span{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+    .footer-credits{font-size:0.75rem;color:rgba(255,255,255,0.25);text-align:right}
+    .footer-credits a{color:rgba(255,255,255,0.35)}
+    .footer-credits a:hover{color:var(--blue-mid)}
+
+    @media(max-width:680px){
+      nav{padding:0 1rem}
+      .nav-links a{padding:0 0.55rem;font-size:0.75rem}
+      .nav-logo span{display:none}
+      .page-header{padding:2.5rem 1.2rem 2rem}
+      .container{padding:0 1.2rem}
+      .link-grid{grid-template-columns:1fr}
+      .footer-inner{grid-template-columns:1fr;gap:1.5rem}
+      .footer-credits{text-align:left}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="Imagenes/logo_nov2024.png" alt="Logo Anfibios Colombianos">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="geografia.html">Geografía</a></li>
+      <li><a href="unete.html">Únete</a></li>
+      <li><a href="enlaces.html" class="current">Enlaces</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="page-eyebrow">Recursos</p>
+      <h1 class="page-title">Enlaces de interés</h1>
+      <p class="page-lead">Sitios y recursos útiles para la comunidad interesada en bioacústica y herpetología colombiana.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container">
+
+      <!-- Sitios con audios -->
+      <div class="section-block">
+        <p class="section-eyebrow">Colecciones y repositorios</p>
+        <h2 class="section-title">Sitios con audios de especies colombianas</h2>
+        <div class="link-grid">
+
+          <a class="link-card" href="http://colecciones.humboldt.org.co/sonidos/" target="_blank">
+            <span class="link-card-name">Colección de Sonidos Ambientales IAVH</span>
+            <span class="link-card-desc">Repositorio oficial del Instituto Humboldt para sonidos ambientales de Colombia.</span>
+            <span class="link-card-url">colecciones.humboldt.org.co</span>
+          </a>
+
+          <a class="link-card" href="https://www.santanderherps.com/" target="_blank">
+            <span class="link-card-name">Santander Herpetológico</span>
+            <span class="link-card-desc">Documentación de anfibios y reptiles del departamento de Santander.</span>
+            <span class="link-card-url">santanderherps.com</span>
+          </a>
+
+          <a class="link-card" href="https://www.fonozoo.com/" target="_blank">
+            <span class="link-card-name">Fonozoo</span>
+            <span class="link-card-desc">Base de datos de sonidos de fauna silvestre.</span>
+            <span class="link-card-url">fonozoo.com</span>
+          </a>
+
+          <a class="link-card" href="https://anfibiacallsns.web.app/" target="_blank">
+            <span class="link-card-name">Anfibios Norte de Santander</span>
+            <span class="link-card-desc">Visor de cantos de anfibios del Norte de Santander.</span>
+            <span class="link-card-url">anfibiacallsns.web.app</span>
+          </a>
+
+          <a class="link-card" href="https://mhnu.unillanos.edu.co/entrelazos/sound.html" target="_blank">
+            <span class="link-card-name">Museo de Historia Natural Unillanos</span>
+            <span class="link-card-desc">Colección de sonidos del Museo de Historia Natural de la Universidad de los Llanos.</span>
+            <span class="link-card-url">mhnu.unillanos.edu.co</span>
+          </a>
+
+          <a class="link-card" href="https://www.batrachia.com/cantos-de-ranas-en-colombia/" target="_blank">
+            <span class="link-card-name">Batrachia</span>
+            <span class="link-card-desc">Cantos de ranas colombianas con fichas por especie.</span>
+            <span class="link-card-url">batrachia.com</span>
+          </a>
+
+          <a class="link-card" href="https://www.inaturalist.org/projects/amphibians-and-reptiles-of-colombia" target="_blank">
+            <span class="link-card-name">iNaturalist — Anfibios de Colombia</span>
+            <span class="link-card-desc">Proyecto de ciencia ciudadana con registros de anfibios y reptiles colombianos.</span>
+            <span class="link-card-url">inaturalist.org</span>
+          </a>
+
+          <a class="link-card" href="https://xeno-canto.org/" target="_blank">
+            <span class="link-card-name">Xeno-canto</span>
+            <span class="link-card-desc">Repositorio colaborativo de sonidos de aves y ranas del mundo.</span>
+            <span class="link-card-url">xeno-canto.org</span>
+          </a>
+
+          <a class="link-card" href="https://figshare.com/" target="_blank">
+            <span class="link-card-name">Figshare</span>
+            <span class="link-card-desc">Repositorio de datos de investigación con acceso abierto.</span>
+            <span class="link-card-url">figshare.com</span>
+          </a>
+
+          <a class="link-card" href="https://bioweb.bio/faunaweb/amphibiaweb/Cantos/" target="_blank">
+            <span class="link-card-name">AmphibiaWeb Ecuador</span>
+            <span class="link-card-desc">Cantos de anfibios del Ecuador, con especies compartidas con Colombia.</span>
+            <span class="link-card-url">bioweb.bio</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Recursos bioacústica -->
+      <div class="section-block">
+        <p class="section-eyebrow">Formación</p>
+        <h2 class="section-title">Recursos en Bioacústica</h2>
+        <div class="link-grid">
+
+          <a class="link-card" href="https://www.birds.cornell.edu/ccb/bioacoustalks/" target="_blank">
+            <span class="link-card-name">Bioacoustics Talks</span>
+            <span class="link-card-desc">Serie de charlas sobre bioacústica del Cornell Lab of Ornithology, con temas de métodos, análisis y conservación.</span>
+            <span class="link-card-url">birds.cornell.edu</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wave-divider">
+    <img src="Imagenes/wave_2.png" alt="">
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Imagenes/logo_nov2024.png" alt="Logo">
+        <div>
+          <div class="footer-brand-name">Anfibios Colombianos<br>Dataverso de Sonidos</div>
+          <div class="footer-brand-sub">Grupo Herpetológico de Antioquia · 2026</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Secciones</div>
+        <a href="sobre.html">Sobre el dataverso</a>
+        <a href="geografia.html">Geografía</a>
+        <a href="unete.html">Únete</a>
+        <a href="enlaces.html">Enlaces</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contacto</div>
+        <a href="mailto:juanm.daza@udea.edu.co">juanm.daza@udea.edu.co</a>
+        <a href="https://github.com/colombian-sounds" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Grupo Herpetológico de Antioquia</span>
+      <div class="footer-credits">
+        Diseño y Programación: <a href="mailto:juanm.daza@udea.edu.co">Juan M. Daza</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
