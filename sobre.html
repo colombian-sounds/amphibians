@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre el dataverso — Anfibios Colombianos</title>
+  <meta name="theme-color" content="#1C71B8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:#1C71B8;--blue-dark:#145290;--blue-light:#E8F1FA;--blue-mid:#5A9FD4;
+      --black:#0f0f0f;--ink:#1a1a1a;--muted:#555;--subtle:#888;--border:#dde3ea;
+      --bg:#ffffff;--bg-off:#f6f8fb;
+      --ff-display:'Fraunces',Georgia,serif;--ff-body:'Source Sans 3',system-ui,sans-serif;
+      --radius:10px;--max-w:860px;--nav-h:60px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ff-body);font-size:17px;line-height:1.75;color:var(--ink);background:var(--bg)}
+    img{max-width:100%;display:block}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ── Nav ── */
+    nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:var(--black);display:flex;align-items:center;padding:0 2rem;gap:2rem}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+    .nav-logo img{height:36px;width:auto;border-radius:50%}
+    .nav-logo span{font-family:var(--ff-display);font-size:0.95rem;font-weight:400;color:#fff;line-height:1.2}
+    .nav-links{display:flex;align-items:center;list-style:none;margin-left:auto;gap:0}
+    .nav-links a{font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:0 0.9rem;text-decoration:none;transition:color .15s}
+    .nav-links a:hover{color:#fff}
+    .nav-links a.current{color:var(--blue-mid)}
+
+    /* ── Page header ── */
+    .page-header{background:var(--black);padding:3.5rem 2rem 3rem}
+    .page-header-inner{max-width:var(--max-w);margin:0 auto}
+    .page-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:0.6rem}
+    .page-title{font-family:var(--ff-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;color:#fff;line-height:1.15;margin-bottom:1rem}
+    .page-lead{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.65);max-width:580px;line-height:1.7}
+
+    /* ── Content ── */
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+    .content{padding:3.5rem 0 5rem}
+
+    /* ── Quote ── */
+    .quote-block{margin-bottom:3rem;padding:1.8rem 2rem;border-left:3px solid var(--blue);background:var(--bg-off);border-radius:0 var(--radius) var(--radius) 0}
+    .quote-text{font-family:var(--ff-display);font-size:1.15rem;font-style:italic;color:var(--ink);line-height:1.65;margin-bottom:0.5rem}
+    .quote-author{font-size:0.82rem;color:var(--subtle);font-weight:600}
+
+    /* ── Body text ── */
+    .body-text{font-size:1rem;color:var(--ink);line-height:1.85;margin-bottom:1.4rem;max-width:720px}
+    .body-text a{color:var(--blue)}
+
+    /* ── Section label ── */
+    .subsection{margin:2.5rem 0 1rem}
+    .subsection-title{font-family:var(--ff-display);font-size:1.1rem;font-weight:600;color:var(--black);margin-bottom:1rem}
+
+    /* ── Objectives ── */
+    .objectives{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:2rem}
+    .obj-item{display:flex;align-items:flex-start;gap:12px;padding:1rem 1.1rem;background:var(--bg-off);border:0.5px solid var(--border);border-radius:var(--radius)}
+    .obj-num{font-family:var(--ff-display);font-size:1.3rem;font-weight:600;color:var(--blue-mid);line-height:1;flex-shrink:0;min-width:24px}
+    .obj-text{font-size:0.9rem;color:var(--ink);line-height:1.6}
+
+    /* ── FAIR pills ── */
+    .fair-block{display:flex;gap:10px;flex-wrap:wrap;margin:1rem 0 1.5rem}
+    .fair-pill{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--blue-light);border-radius:20px;border:0.5px solid #b8d4ee}
+    .fair-letter{font-family:var(--ff-display);font-size:1rem;font-weight:600;color:var(--blue-dark);line-height:1}
+    .fair-word{font-size:0.78rem;color:var(--blue-dark);font-weight:600;text-transform:uppercase;letter-spacing:0.04em}
+
+    /* ── Repos ── */
+    .repos{display:flex;gap:10px;flex-wrap:wrap;margin:1rem 0 1.5rem}
+    .repo-chip{padding:6px 14px;background:var(--bg-off);border:0.5px solid var(--border);border-radius:20px;font-size:0.85rem;font-weight:600;color:var(--ink);text-decoration:none;transition:background .15s,border-color .15s}
+    .repo-chip:hover{background:var(--blue-light);border-color:#b8d4ee;text-decoration:none}
+
+    /* ── Stats inline ── */
+    .stat-inline{display:inline-flex;align-items:baseline;gap:5px}
+    .stat-inline .n{font-family:var(--ff-display);font-size:1.2rem;font-weight:600;color:var(--blue)}
+
+    /* ── CTA ── */
+    .cta-block{margin-top:3rem;padding:1.5rem 1.8rem;background:var(--blue-light);border-radius:var(--radius);border-left:3px solid var(--blue);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .cta-text{font-size:0.97rem;color:var(--ink);line-height:1.6}
+    .cta-btn{display:inline-block;padding:9px 20px;background:var(--blue);color:#fff;font-size:0.88rem;font-weight:600;border-radius:6px;text-decoration:none;white-space:nowrap;transition:background .15s;flex-shrink:0}
+    .cta-btn:hover{background:var(--blue-dark);text-decoration:none}
+
+    /* ── Footer ── */
+    .wave-divider{background:var(--black);padding:2rem 0;display:flex;justify-content:center;overflow:hidden}
+    .wave-divider img{max-width:300px;width:85%;opacity:0.85}
+    footer{background:var(--black);padding:3rem 2rem 2rem}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem}
+    .footer-brand{display:flex;align-items:flex-start;gap:12px}
+    .footer-brand img{height:44px;width:auto;opacity:0.75;flex-shrink:0}
+    .footer-brand-name{font-family:var(--ff-display);font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.8);line-height:1.3;margin-bottom:4px}
+    .footer-brand-sub{font-size:0.75rem;color:rgba(255,255,255,0.3)}
+    .footer-col-title{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.8rem}
+    .footer-col a{display:block;font-size:0.82rem;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:6px;transition:color .15s}
+    .footer-col a:hover{color:var(--blue-mid)}
+    .footer-bottom{max-width:var(--max-w);margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .footer-bottom span{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+    .footer-credits{font-size:0.75rem;color:rgba(255,255,255,0.25);text-align:right}
+    .footer-credits a{color:rgba(255,255,255,0.35)}
+    .footer-credits a:hover{color:var(--blue-mid)}
+
+    @media(max-width:680px){
+      nav{padding:0 1rem}
+      .nav-links a{padding:0 0.55rem;font-size:0.75rem}
+      .nav-logo span{display:none}
+      .page-header{padding:2.5rem 1.2rem 2rem}
+      .container{padding:0 1.2rem}
+      .objectives{grid-template-columns:1fr}
+      .footer-inner{grid-template-columns:1fr;gap:1.5rem}
+      .footer-credits{text-align:left}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="Imagenes/logo_nov2024.png" alt="Logo Anfibios Colombianos">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html" class="current">Sobre</a></li>
+      <li><a href="geografia.html">Geografía</a></li>
+      <li><a href="unete.html">Únete</a></li>
+      <li><a href="enlaces.html">Enlaces</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="page-eyebrow">¿Qué es esto?</p>
+      <h1 class="page-title">Dataverso de Sonidos de<br>Anfibios Colombianos</h1>
+      <p class="page-lead">Primer visor colombiano que integra de forma simple y eficiente la información disponible de datos acústicos de la anurofauna del país.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container">
+
+      <div class="quote-block">
+        <p class="quote-text">"If open science is done transparently, it doesn't have to be done perfectly. You can always refine as you go."</p>
+        <p class="quote-author">— Aleksandra Lazić</p>
+      </div>
+
+      <p class="body-text">Colombia, con una gran diversidad de anfibios, resulta en una inmensa riqueza de sonidos generados por estos. Desde la última década ha crecido el interés por documentar estos sonidos y la comunidad herpetológica está aprovechando el sonido emitido por los anfibios para abordar preguntas que van desde la taxonomía, ecología y comportamiento hasta la evolución de señales y el monitoreo de la biodiversidad.</p>
+
+      <p class="body-text">Este sitio surge como una respuesta al reconocimiento de que la accesibilidad a los resultados de estudios acústicos con anfibios colombianos se encuentra dispersa o es de difícil acceso. Los datos aquí contenidos corresponden a audios, medidas realizadas por los investigadores y tablas de selección generadas en diferentes programas (e.g. <a href="https://store.birds.cornell.edu/collections/raven-sound-software" target="_blank">Raven</a>).</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Objetivos</div>
+        <div class="objectives">
+          <div class="obj-item">
+            <span class="obj-num">1</span>
+            <span class="obj-text">La reproducibilidad de los resultados obtenidos en descripciones de cantos.</span>
+          </div>
+          <div class="obj-item">
+            <span class="obj-num">2</span>
+            <span class="obj-text">Estimular nuevas descripciones de cantos de especies colombianas.</span>
+          </div>
+          <div class="obj-item">
+            <span class="obj-num">3</span>
+            <span class="obj-text">Facilitar archivos anotados para el entrenamiento de algoritmos de detección automática de especies.</span>
+          </div>
+          <div class="obj-item">
+            <span class="obj-num">4</span>
+            <span class="obj-text">Apoyar cursos y prácticas en Bioacústica y Ecoacústica.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Principios FAIR</div>
+        <p class="body-text">Nuestra principal motivación son los <a href="https://www.go-fair.org/fair-principles/" target="_blank">principios FAIR</a>, que buscan que los datos digitales sean:</p>
+        <div class="fair-block">
+          <div class="fair-pill"><span class="fair-letter">F</span><span class="fair-word">Findable</span></div>
+          <div class="fair-pill"><span class="fair-letter">A</span><span class="fair-word">Accessible</span></div>
+          <div class="fair-pill"><span class="fair-letter">I</span><span class="fair-word">Interoperable</span></div>
+          <div class="fair-pill"><span class="fair-letter">R</span><span class="fair-word">Reusable</span></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Datos disponibles</div>
+        <p class="body-text">A diciembre de 2024 hemos incluido <span class="stat-inline"><span class="n">1577</span> audios</span> disponibles en cuatro repositorios:</p>
+        <div class="repos">
+          <a class="repo-chip" href="http://colecciones.humboldt.org.co/sonidos/" target="_blank">CSA-IAVH</a>
+          <a class="repo-chip" href="https://www.inaturalist.org/projects/amphibians-and-reptiles-of-colombia" target="_blank">iNaturalist</a>
+          <a class="repo-chip" href="https://figshare.com/" target="_blank">Figshare</a>
+          <a class="repo-chip" href="https://xeno-canto.org/" target="_blank">Xeno-canto</a>
+        </div>
+        <p class="body-text">De estos, <span class="stat-inline"><span class="n">257</span> audios</span> pertenecen a especímenes depositados en seis colecciones biológicas del país.</p>
+      </div>
+
+      <div class="cta-block">
+        <p class="cta-text">Esperamos que este sitio motive a la comunidad a seguir depositando sus datos acústicos en repositorios de libre acceso.</p>
+        <a href="mailto:juanm.daza@udea.edu.co" class="cta-btn">Escríbenos</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wave-divider">
+    <img src="Imagenes/wave_2.png" alt="">
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Imagenes/logo_nov2024.png" alt="Logo">
+        <div>
+          <div class="footer-brand-name">Anfibios Colombianos<br>Dataverso de Sonidos</div>
+          <div class="footer-brand-sub">Grupo Herpetológico de Antioquia · 2026</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Secciones</div>
+        <a href="sobre.html">Sobre el dataverso</a>
+        <a href="geografia.html">Geografía</a>
+        <a href="unete.html">Únete</a>
+        <a href="enlaces.html">Enlaces</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contacto</div>
+        <a href="mailto:juanm.daza@udea.edu.co">juanm.daza@udea.edu.co</a>
+        <a href="https://github.com/colombian-sounds" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Grupo Herpetológico de Antioquia</span>
+      <div class="footer-credits">
+        Diseño y Programación: <a href="mailto:juanm.daza@udea.edu.co">Juan M. Daza</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
