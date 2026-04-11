@@ -180,36 +180,117 @@
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Contacto</div>
-        <a href="mailto:juanm.daza@udea.edu.co">juanm.daza@udea.edu.co</a>
+        <a href="/cdn-cgi/l/email-protection#375d4256595a1953564d56774253525619525342195458"><span class="__cf_email__" data-cfemail="553f20343b387b31342f3415203130347b3031207b363a">[email&#160;protected]</span></a>
         <a href="https://github.com/colombian-sounds" target="_blank">GitHub</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Grupo Herpetológico de Antioquia</span>
       <div class="footer-credits">
-        Diseño y Programación: <a href="mailto:juanm.daza@udea.edu.co">Juan M. Daza</a>
+        Diseño y Programación: <a href="/cdn-cgi/l/email-protection#c8a2bda9a6a5e6aca9b2a988bdacada9e6adacbde6aba7">Juan M. Daza</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault(); deferredPrompt = e;
-      document.getElementById('btn-install').classList.add('visible');
-    });
-    document.getElementById('btn-install').addEventListener('click', () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(() => {
-        deferredPrompt = null;
-        document.getElementById('btn-install').classList.remove('visible');
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+    /* ── PWA: service worker + banner de instalación ── */
+    (function () {
+      /* Registro del service worker */
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(console.error);
+      }
+
+      /* Detección de entorno */
+      const ua           = navigator.userAgent;
+      const isIOS        = /iphone|ipad|ipod/i.test(ua);
+      const isSafari     = /^((?!chrome|android).)*safari/i.test(ua);
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+                           || navigator.standalone === true;
+
+      /* Si ya está instalada, no mostrar nada */
+      if (isStandalone) return;
+
+      /* ── Estilos del banner ── */
+      const style = document.createElement('style');
+      style.textContent = `
+        #pwa-banner {
+          position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+          background: #1a1a2e; color: #e8e8e8;
+          border: 1px solid #1C71B8; border-radius: 14px;
+          padding: 14px 20px; max-width: 340px; width: 90%;
+          box-shadow: 0 8px 28px rgba(0,0,0,.55);
+          display: flex; align-items: center; gap: 14px;
+          font-family: system-ui, sans-serif; font-size: 14px;
+          z-index: 9999; animation: pwaBannerUp .35s ease;
+        }
+        @keyframes pwaBannerUp {
+          from { opacity:0; transform: translateX(-50%) translateY(20px); }
+          to   { opacity:1; transform: translateX(-50%) translateY(0); }
+        }
+        #pwa-banner img { width:44px; height:44px; border-radius:10px; flex-shrink:0; }
+        #pwa-banner .pwa-text { flex:1; line-height:1.4; }
+        #pwa-banner .pwa-text strong { display:block; color:#fff; margin-bottom:2px; }
+        #pwa-banner .pwa-actions { display:flex; flex-direction:column; gap:6px; flex-shrink:0; }
+        #pwa-banner button {
+          border:none; border-radius:8px; padding:7px 14px;
+          font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap;
+        }
+        #pwa-btn-install { background:#1C71B8; color:#fff; }
+        #pwa-btn-install:hover { background:#145290; }
+        #pwa-btn-dismiss { background:transparent; color:#888; font-weight:400; }
+        #pwa-btn-dismiss:hover { color:#bbb; }
+      `;
+      document.head.appendChild(style);
+
+      /* ── Construir el banner ── */
+      function createBanner(mainLabel, onInstall) {
+        const banner = document.createElement('div');
+        banner.id = 'pwa-banner';
+        banner.innerHTML = `
+          <img src="Imagenes/icono_app_192.png" alt="Dataverso">
+          <div class="pwa-text">
+            <strong>Dataverso</strong>
+            Instala el acceso directo en tu dispositivo
+          </div>
+          <div class="pwa-actions">
+            <button id="pwa-btn-install">${mainLabel}</button>
+            <button id="pwa-btn-dismiss">Ahora no</button>
+          </div>`;
+        document.body.appendChild(banner);
+        document.getElementById('pwa-btn-install').addEventListener('click', onInstall);
+        document.getElementById('pwa-btn-dismiss').addEventListener('click', () => banner.remove());
+      }
+
+      /* ── Android / Chrome: usa beforeinstallprompt ── */
+      let deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', e => {
+        e.preventDefault();
+        deferredPrompt = e;
+        createBanner('Instalar', async () => {
+          deferredPrompt.prompt();
+          await deferredPrompt.userChoice;
+          deferredPrompt = null;
+          document.getElementById('pwa-banner')?.remove();
+        });
       });
-    });
-    window.addEventListener('appinstalled', () => {
-      document.getElementById('btn-install').classList.remove('visible');
-    });
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+      window.addEventListener('appinstalled', () => {
+        document.getElementById('pwa-banner')?.remove();
+      });
+
+      /* ── iOS / Safari: instrucción manual ── */
+      if (isIOS && isSafari) {
+        window.addEventListener('DOMContentLoaded', () => {
+          createBanner('Cómo instalar', () => {
+            document.querySelector('#pwa-banner .pwa-actions').innerHTML = `
+              <span style="font-size:12px;color:#aaa;line-height:1.5;max-width:140px;display:block;">
+                Toca <strong style="color:#fff">compartir</strong> ↑ y luego<br>
+                <strong style="color:#fff">"Añadir a inicio"</strong>
+              </span>`;
+          });
+        });
+      }
+    })();
 
     const SPECIES_DATA = [
       { family: "Aromobatidae", species: [
@@ -335,14 +416,16 @@
       document.getElementById('sp-total').textContent=
         `${totalSp} ${totalSp===1?'especie':'especies'} · ${totalFam} ${totalFam===1?'familia':'familias'}`;
     }
+    /* ── Catálogo de especies ── */
     function toggleFamily(header){
-      const list=header.nextElementSibling;
-      const chev=header.querySelector('.fam-chevron');
-      const open=list.classList.toggle('open');
-      header.classList.toggle('open',open);
-      chev.classList.toggle('open',open);
+      const list = header.nextElementSibling;
+      const chevron = header.querySelector('.fam-chevron');
+      const isOpen = list.classList.contains('open');
+      list.classList.toggle('open', !isOpen);
+      header.classList.toggle('open', !isOpen);
+      chevron.classList.toggle('open', !isOpen);
     }
-    function filterSpecies(val){renderSpecies(val)}
+    function filterSpecies(q){ renderSpecies(q); }
     renderSpecies('');
   </script>
 </body>
