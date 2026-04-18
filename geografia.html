@@ -128,7 +128,7 @@
     <div class="page-header-inner">
       <p class="page-eyebrow">Distribución</p>
       <h1 class="page-title">Geografía de los datos</h1>
-      <p class="page-lead">Explora la distribución geográfica de los 2.048 audios disponibles, visualizados por repositorio de origen y por la presencia de espécimen voucher.</p>
+      <p class="page-lead">Explora la distribución geográfica de los audios disponibles, visualizados por repositorio de origen y por la presencia de espécimen voucher.</p>
     </div>
   </div>
 
@@ -139,7 +139,7 @@
       <div class="map-block">
         <p class="map-eyebrow">Repositorios</p>
         <h2 class="map-title">Datos por repositorio</h2>
-        <p class="map-desc">Cada punto representa un audio georreferenciado, coloreado según el repositorio donde fue depositado. Los círculos son registros sin espécimen voucher; los cuadrados tienen voucher asociado.</p>
+        <p class="map-desc">Explora la contribución de cada repositorio al conocimiento acústico de los anfibios colombianos.</p>
         <div class="map-stats">
           <span class="stat-pill" style="border-left:3px solid #1F1F1E">CSA-IAVH: 1.115</span>
           <span class="stat-pill" style="border-left:3px solid #8DBA47">iNaturalist: 877</span>
@@ -154,15 +154,20 @@
       <div class="map-block">
         <p class="map-eyebrow">Voucher</p>
         <h2 class="map-title">Datos con espécimen voucher</h2>
-        <p class="map-desc">Los cuadrados azules indican registros respaldados por un ejemplar depositado en colección biológica, que permite verificar la identificación taxonómica. Los círculos grises son registros sin voucher.</p>
+        <p class="map-desc">Registros respaldados por un espécimen depositado en colección biológica, que permite verificar la identificación taxonómica.</p>
         <div class="map-stats">
-          <span class="stat-pill" style="border-left:3px solid #1C71B8">Con voucher: 178</span>
-          <span class="stat-pill" style="border-left:3px solid #aaa">Sin voucher: 1.870</span>
+          <span class="stat-pill" style="border-left:3px solid #0f0f0f">Con voucher: 178</span>
         </div>
         <div class="map-wrap">
           <div id="map-voucher" class="leaflet-map"></div>
         </div>
-        <p class="download-note">Descarga la tabla completa de datos <a href="https://docs.google.com/spreadsheets/d/11lmO52ZH6pC3ENwVOi9jXfKixhflYplV/edit?usp=sharing" target="_blank">aquí</a>.</p>
+        <div style="margin-top:1rem">
+          <a href="https://docs.google.com/spreadsheets/d/11lmO52ZH6pC3ENwVOi9jXfKixhflYplV/edit?usp=sharing" target="_blank"
+             style="display:inline-block;background:#1C71B8;color:#fff;font-family:var(--ff-body);font-size:0.9rem;font-weight:600;padding:10px 22px;border-radius:6px;text-decoration:none;transition:background .2s"
+             onmouseover="this.style.background='#145290'" onmouseout="this.style.background='#1C71B8'">
+            Descarga la tabla completa
+          </a>
+        </div>
       </div>
 
     </div>
@@ -228,24 +233,22 @@
     const CENTER = [4.5, -74.0];
     const ZOOM = 5;
 
-    // ── Marker factory ──────────────────────────────────────────────
-    function makeMarker(p, color) {
-      const esVoucher = p.voucher === true;
-      const base = { color:'#fff', weight:1.5, opacity:1, fillColor:color, fillOpacity:0.85 };
+    // ── Marker factories ────────────────────────────────────────────
+    function circleMarker(p, color) {
+      return L.circleMarker([p.lat, p.lng], {
+        radius:5, color:'#fff', weight:1.5, opacity:1,
+        fillColor:color, fillOpacity:0.85
+      });
+    }
 
-      if (esVoucher) {
-        // Square via rotated circleMarker trick — use a custom DivIcon square
-        const icon = L.divIcon({
-          className: '',
-          html: `<div style="width:10px;height:10px;background:${color};border:1.5px solid #fff;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>`,
-          iconSize: [10, 10],
-          iconAnchor: [5, 5]
-        });
-        const m = L.marker([p.lat, p.lng], { icon });
-        return m;
-      } else {
-        return L.circleMarker([p.lat, p.lng], Object.assign(base, { radius:5 }));
-      }
+    function squareMarker(p, color) {
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="width:10px;height:10px;background:${color};border:1.5px solid #fff;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>`,
+        iconSize: [10, 10],
+        iconAnchor: [5, 5]
+      });
+      return L.marker([p.lat, p.lng], { icon });
     }
 
     function popupHtml(p) {
@@ -268,8 +271,7 @@
     PUNTOS.forEach(function(p) {
       if (!p.lat || !p.lng) return;
       const color = REPO_COLORS[p.repo] || '#888';
-      const m = makeMarker(p, color);
-      m.addTo(map1).bindPopup(popupHtml(p), { maxWidth: 280 });
+      circleMarker(p, color).addTo(map1).bindPopup(popupHtml(p), { maxWidth: 280 });
     });
 
     // Legend mapa 1
@@ -283,9 +285,6 @@
           ${REPO_LABELS[repo] || repo}
         </div>`;
       });
-      html += '<div class="map-legend-title" style="margin-top:8px">Forma</div>';
-      html += `<div class="map-legend-item"><span class="map-legend-dot" style="background:#888"></span>Sin voucher</div>`;
-      html += `<div class="map-legend-item"><span class="map-legend-sq" style="background:#888"></span>Con voucher</div>`;
       div.innerHTML = html;
       return div;
     };
@@ -296,10 +295,8 @@
     L.tileLayer(TILE_URL, { attribution: TILE_ATTR, maxZoom: 19 }).addTo(map2);
 
     PUNTOS.forEach(function(p) {
-      if (!p.lat || !p.lng) return;
-      const color = p.voucher ? '#1C71B8' : '#999';
-      const m = makeMarker(p, color);
-      m.addTo(map2).bindPopup(popupHtml(p), { maxWidth: 280 });
+      if (!p.lat || !p.lng || !p.voucher) return;
+      squareMarker(p, '#0f0f0f').addTo(map2).bindPopup(popupHtml(p), { maxWidth: 280 });
     });
 
     // Legend mapa 2
@@ -307,8 +304,7 @@
     leg2.onAdd = function() {
       const div = L.DomUtil.create('div', 'map-legend');
       let html = '<div class="map-legend-title">Voucher</div>';
-      html += `<div class="map-legend-item"><span class="map-legend-sq" style="background:#1C71B8"></span>Con voucher (178)</div>`;
-      html += `<div class="map-legend-item"><span class="map-legend-dot" style="background:#999"></span>Sin voucher (1.870)</div>`;
+      html += `<div class="map-legend-item"><span class="map-legend-sq" style="background:#0f0f0f"></span>Con espécimen voucher (178)</div>`;
       div.innerHTML = html;
       return div;
     };
