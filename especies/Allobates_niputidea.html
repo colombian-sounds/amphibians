@@ -345,19 +345,19 @@
         <tr>
           <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#1F1F1E">CSA-IAVH</span><span class="sp-aud-label">IAvH-CSA-18218</span></div></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
-          <td class="sp-td-icon"><a href="http://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18218/IAvH-CSA-18218.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><a href="https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18218/IAvH-CSA-18218.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
         <tr>
           <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#1F1F1E">CSA-IAVH</span><span class="sp-aud-label">IAvH-CSA-18222</span></div></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
-          <td class="sp-td-icon"><a href="http://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18222/IAvH-CSA-18222.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><a href="https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18222/IAvH-CSA-18222.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
         <tr>
-          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">27640602.v2</span></div></td>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">50323587</span></div></td>
           <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.27640602.v2" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
-          <td class="sp-td-icon"><a href="https://figshare.com/articles/media/Allobates_niputidea/27640602/2?file=50323587" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><a href="https://figshare.com/ndownloader/files/50323587" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
         <tr>
@@ -434,7 +434,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["http://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18218/IAvH-CSA-18218.wav", "http://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18222/IAvH-CSA-18222.wav", "https://figshare.com/articles/media/Allobates_niputidea/27640602/2?file=50323587", "https://xeno-canto.org/sounds/uploaded/OXEZGYHYKE/XC972287-G-SEP0194_edit.wav"];
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18218/IAvH-CSA-18218.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18222/IAvH-CSA-18222.wav", "https://figshare.com/ndownloader/files/50323587", "https://xeno-canto.org/sounds/uploaded/OXEZGYHYKE/XC972287-G-SEP0194_edit.wav"];
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -459,6 +459,7 @@
           const fname = u.split('/').pop().split('?')[0];
           const isFigshare = u.includes("figshare.com");
           const isIAVH     = u.includes("humboldt.org.co");
+          const isXenoCanto = u.includes("xeno-canto.org");
           if (isFigshare) {
             content += "echo.\r\n";
             content += "echo Abriendo archivo de Figshare en el navegador...\r\n";
@@ -466,6 +467,8 @@
             content += "start \"" + u + "\"\r\n";
           } else if (isIAVH) {
             content += "curl -L -o \"" + fname + "\" -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://colecciones.humboldt.org.co/\" \"" + u + "\"\r\n";
+          } else if (isXenoCanto) {
+            content += "curl -L -O --remote-header-name -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://xeno-canto.org/\" \"" + u + "\"\r\n";
           } else {
             content += "curl -L -o \"" + fname + "\" \"" + u + "\"\r\n";
           }
@@ -481,11 +484,12 @@
           const fname = u.split('/').pop().split('?')[0];
           const isFigshare = u.includes("figshare.com");
           const isIAVH     = u.includes("humboldt.org.co");
+          const isXenoCanto = u.includes("xeno-canto.org");
           if (isFigshare) {
             content += "echo ''\n";
             content += "echo '⚠️  Archivo de Figshare: se abrirá en el navegador.'\n";
             content += "echo '   Guárdalo manualmente en esta carpeta cuando se descargue.'\n";
-            content += "if [[ \"$OSTYPE\" == \"darwin*\" ]]; then\n";
+            content += "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then\n";
             content += "  open \"" + u + "\"\n";
             content += "else\n";
             content += "  xdg-open \"" + u + "\"\n";
@@ -494,6 +498,11 @@
             content += "curl -L -o \"" + fname + "\" \\\n";
             content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
             content += "  -H \"Referer: https://colecciones.humboldt.org.co/\" \\\n";
+            content += "  \"" + u + "\";\n";
+          } else if (isXenoCanto) {
+            content += "curl -L -O --remote-header-name \\\n";
+            content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
+            content += "  -H \"Referer: https://xeno-canto.org/\" \\\n";
             content += "  \"" + u + "\";\n";
           } else {
             content += "curl -L -o \"" + fname + "\" \"" + u + "\";\n";
@@ -515,7 +524,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 6.089528, "lng": -74.234806, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-18218", "url": "http://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18218/IAvH-CSA-18218.wav", "voucher": true}, {"lat": 6.089472, "lng": -74.234778, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-18222", "url": "http://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18222/IAvH-CSA-18222.wav", "voucher": true}, {"lat": 7.1281, "lng": -73.4861, "col": "#862609", "repo": "Xeno-canto", "etiq": "XC972287", "url": "https://xeno-canto.org/sounds/uploaded/OXEZGYHYKE/XC972287-G-SEP0194_edit.wav", "voucher": false}];
+    const puntos = [{"lat": 6.089528, "lng": -74.234806, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-18218", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18218/IAvH-CSA-18218.wav", "voucher": true}, {"lat": 6.089472, "lng": -74.234778, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-18222", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-18222/IAvH-CSA-18222.wav", "voucher": true}, {"lat": 7.1281, "lng": -73.4861, "col": "#862609", "repo": "Xeno-canto", "etiq": "XC972287", "url": "https://xeno-canto.org/sounds/uploaded/OXEZGYHYKE/XC972287-G-SEP0194_edit.wav", "voucher": false}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {
