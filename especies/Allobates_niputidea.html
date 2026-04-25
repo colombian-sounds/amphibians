@@ -376,9 +376,10 @@
         <ol style="margin-left: 1.5rem; margin-top: 10px;">
           <li>Haz clic en el botón correspondiente (audios o tablas).</li>
           <li>Se descargará un archivo <code>.sh</code> (Mac/Linux) o <code>.bat</code> (Windows).</li>
-          <li><strong>Mac/Linux:</strong> abre la Terminal, arrastra el archivo descargado a la ventana y presiona Enter.</li>
+          <li><strong>Mac/Linux:</strong> abre la Terminal, navega a la carpeta donde quieres que queden tus descargas, escribe bash, espacio, arrastra el archivo descargado a la ventana y presiona Enter.</li>
           <li><strong>Windows:</strong> haz doble clic sobre el archivo <code>.bat</code> descargado.</li>
           <li>Los archivos se guardarán en una carpeta con el nombre de la especie.</li>
+          <li><strong>Archivos de Figshare:</strong> estos se abrirán en el navegador y se guardarán en tu carpeta de Descargas. Muévelos manualmente a la carpeta de la especie.</li>
         </ol>
       </div>
 
@@ -456,7 +457,18 @@
         content += "cd " + especie_slug + "_" + tipo + "\r\n";
         urls.forEach(u => {
           const fname = u.split('/').pop().split('?')[0];
-          content += "curl -L -o \"" + fname + "\" \"" + u + "\"\r\n";
+          const isFigshare = u.includes("figshare.com");
+          const isIAVH     = u.includes("humboldt.org.co");
+          if (isFigshare) {
+            content += "echo.\r\n";
+            content += "echo Abriendo archivo de Figshare en el navegador...\r\n";
+            content += "echo Guardalo manualmente en esta carpeta cuando se descargue.\r\n";
+            content += "start \"" + u + "\"\r\n";
+          } else if (isIAVH) {
+            content += "curl -L -o \"" + fname + "\" -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://colecciones.humboldt.org.co/\" \"" + u + "\"\r\n";
+          } else {
+            content += "curl -L -o \"" + fname + "\" \"" + u + "\"\r\n";
+          }
         });
         content += "echo.\r\n";
         content += "echo Descarga completada en la carpeta " + especie_slug + "_" + tipo + "\r\n";
@@ -467,7 +479,25 @@
         content += "cd " + especie_slug + "_" + tipo + "\n";
         urls.forEach(u => {
           const fname = u.split('/').pop().split('?')[0];
-          content += "curl -L -o \"" + fname + "\" \"" + u + "\";\n";
+          const isFigshare = u.includes("figshare.com");
+          const isIAVH     = u.includes("humboldt.org.co");
+          if (isFigshare) {
+            content += "echo ''\n";
+            content += "echo '⚠️  Archivo de Figshare: se abrirá en el navegador.'\n";
+            content += "echo '   Guárdalo manualmente en esta carpeta cuando se descargue.'\n";
+            content += "if [[ \"$OSTYPE\" == \"darwin*\" ]]; then\n";
+            content += "  open \"" + u + "\"\n";
+            content += "else\n";
+            content += "  xdg-open \"" + u + "\"\n";
+            content += "fi\n";
+          } else if (isIAVH) {
+            content += "curl -L -o \"" + fname + "\" \\\n";
+            content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
+            content += "  -H \"Referer: https://colecciones.humboldt.org.co/\" \\\n";
+            content += "  \"" + u + "\";\n";
+          } else {
+            content += "curl -L -o \"" + fname + "\" \"" + u + "\";\n";
+          }
         });
         content += "echo 'Descarga completada.'\n";
       }
