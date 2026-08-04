@@ -74,6 +74,12 @@
     .sp-name{font-size:0.88rem;font-style:italic;color:var(--ink)}
     .sp-name mark{background:#fff3b0;color:inherit;font-style:italic;border-radius:2px;padding:0 1px}
     .no-results{font-size:0.9rem;color:var(--subtle);padding:1.5rem 0;text-align:center}
+    .excluidas-section{padding:1rem 0 5rem;background:var(--bg-off)}
+    .excluidas-list{display:flex;flex-direction:column;gap:10px}
+    .excluida-item{border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 18px;background:var(--bg)}
+    .excluida-name{font-size:0.95rem;font-weight:600;font-style:italic;color:var(--ink);display:block;margin-bottom:6px}
+    .excluida-motivo{font-size:0.88rem;color:var(--muted);line-height:1.6}
+    .excluida-motivo a{color:var(--blue)}
     .wave-divider{background:var(--black);padding:2rem 0;display:flex;justify-content:center;overflow:hidden}
     .wave-divider img{max-width:300px;width:85%;opacity:0.85}
     footer{background:var(--black);padding:3rem 2rem 2rem}
@@ -151,6 +157,24 @@
       </div>
       <div id="families-container"></div>
       <div class="no-results" id="sp-no-results" style="display:none">Sin resultados para esa búsqueda.</div>
+    </div>
+  </div>
+
+  <div class="excluidas-section">
+    <div class="container">
+      <p class="section-eyebrow">Transparencia</p>
+      <h2 class="section-title">Especies no incluidas</h2>
+      <p class="section-lead">Durante el proceso de búsqueda y revisión de registros acústicos en diferentes repositorios identificamos varias especies que decidimos no incorporar en este visor. Consideramos que tanto los repositorios especializados como las plataformas de ciencia ciudadana son fuentes de gran valor para documentar y ampliar el conocimiento sobre los sonidos de los anfibios de Colombia.</p>
+      <p class="section-lead">No obstante, en algunos casos encontramos registros con información insuficiente, incertidumbres en su identificación o evidencia que no nos permitió validar con suficiente confianza la representación acústica de la especie. Con el fin de mantener la calidad y confiabilidad de la información presentada, optamos por no elaborar una ficha para estas especies.</p>
+      <p class="section-lead">A continuación, presentamos las especies excluidas y la justificación correspondiente para cada caso.</p>
+
+      <div class="excluidas-list" id="excluidas-container">
+        <!-- Duplica este bloque .excluida-item por cada especie adicional -->
+        <div class="excluida-item">
+          <span class="excluida-name">Cochranella granulosa</span>
+          <p class="excluida-motivo">Existe un solo registro acústico en iNaturalist (<a href="#" target="_blank">enlace a la observación</a>). Aunque la foto corresponde a la especie, el audio corresponde a una observación proveniente de Costa Rica y depositada originalmente en Xeno-canto (<a href="#" target="_blank">enlace a la observación</a>).</p>
+        </div>
+      </div>
     </div>
   </div>
 
