@@ -445,6 +445,7 @@
           const fname = u.split('/').pop().split('?')[0];
           const isFigshare = u.includes("figshare.com");
           const isIAVH     = u.includes("humboldt.org.co");
+          const isXenoCanto = u.includes("xeno-canto.org");
           if (isFigshare) {
             content += "echo.\r\n";
             content += "echo Abriendo archivo de Figshare en el navegador...\r\n";
@@ -452,6 +453,8 @@
             content += "start \"" + u + "\"\r\n";
           } else if (isIAVH) {
             content += "curl -L -o \"" + fname + "\" -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://colecciones.humboldt.org.co/\" \"" + u + "\"\r\n";
+          } else if (isXenoCanto) {
+            content += "curl -L -O --remote-header-name -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://xeno-canto.org/\" \"" + u + "\"\r\n";
           } else {
             content += "curl -L -o \"" + fname + "\" \"" + u + "\"\r\n";
           }
@@ -467,11 +470,12 @@
           const fname = u.split('/').pop().split('?')[0];
           const isFigshare = u.includes("figshare.com");
           const isIAVH     = u.includes("humboldt.org.co");
+          const isXenoCanto = u.includes("xeno-canto.org");
           if (isFigshare) {
             content += "echo ''\n";
             content += "echo '⚠️  Archivo de Figshare: se abrirá en el navegador.'\n";
             content += "echo '   Guárdalo manualmente en esta carpeta cuando se descargue.'\n";
-            content += "if [[ \"$OSTYPE\" == \"darwin*\" ]]; then\n";
+            content += "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then\n";
             content += "  open \"" + u + "\"\n";
             content += "else\n";
             content += "  xdg-open \"" + u + "\"\n";
@@ -480,6 +484,11 @@
             content += "curl -L -o \"" + fname + "\" \\\n";
             content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
             content += "  -H \"Referer: https://colecciones.humboldt.org.co/\" \\\n";
+            content += "  \"" + u + "\";\n";
+          } else if (isXenoCanto) {
+            content += "curl -L -O --remote-header-name \\\n";
+            content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
+            content += "  -H \"Referer: https://xeno-canto.org/\" \\\n";
             content += "  \"" + u + "\";\n";
           } else {
             content += "curl -L -o \"" + fname + "\" \"" + u + "\";\n";

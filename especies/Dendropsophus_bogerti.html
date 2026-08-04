@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dendropsophus bogerti — Dataverso de Sonidos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    :root {
+      --blue:      #1C71B8;
+      --blue-dark: #145290;
+      --blue-light:#E8F1FA;
+      --blue-mid:  #5A9FD4;
+      --black:     #0f0f0f;
+      --ink:       #1a1a1a;
+      --muted:     #555;
+      --subtle:    #888;
+      --border:    #dde3ea;
+      --bg:        #ffffff;
+      --bg-off:    #f6f8fb;
+      --sand:      #f5f4f0;
+      --sand-border: #d0cfc8;
+
+      --ff-display: 'Fraunces', Georgia, serif;
+      --ff-body:    'Source Sans 3', system-ui, -apple-system, sans-serif;
+
+      --radius: 10px;
+      --max-w:  720px;
+      --nav-h:  60px;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ff-body);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink);
+      background-color: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* Navbar */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      height: var(--nav-h);
+      background-color: var(--black);
+      display: flex; align-items: center; padding: 0 2rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { height: 34px; border-radius: 50%; }
+    .nav-logo span {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      color: #fff;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: var(--max-w);
+      margin: 1.5rem auto 0;
+      padding: 0 2rem;
+      font-size: 0.8rem;
+      color: var(--subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .breadcrumb a { color: var(--subtle); }
+    .breadcrumb span { margin: 0 0.5rem; opacity: 0.5; }
+
+    /* Layout */
+    .sp-container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem 2rem 6rem;
+    }
+
+    /* Header */
+    .sp-header { text-align: center; margin-bottom: 3.5rem; }
+    .sp-header img {
+      width: 100%; max-width: 520px;
+      border-radius: var(--radius);
+      margin-bottom: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .sp-header .sp-fam {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
+    }
+    .sp-header h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+    .sp-header .sp-auth { color: var(--muted); font-size: 1rem; font-weight: 300; }
+
+    /* Secciones */
+    .sp-section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+      margin-top: 3.5rem;
+    }
+
+    /* Tabs Visual */
+    .sp-tabs-nav { display: flex; gap: 4px; margin-bottom: -1px; position: relative; z-index: 2; }
+    .sp-tab-btn {
+      padding: 8px 20px;
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--sand);
+      border: 1px solid var(--sand-border);
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sp-tab-btn:hover { background: #eee; }
+    .sp-tab-btn.active {
+      background: var(--bg);
+      color: var(--ink);
+      border-color: var(--sand-border);
+      padding-bottom: 9px;
+    }
+
+    .sp-tab-content {
+      border: 1px solid var(--sand-border);
+      border-radius: 0 8px 8px 8px;
+      padding: 1.5rem;
+      background: var(--bg);
+      min-height: 100px;
+    }
+    .sp-panel { display: none; }
+    .sp-panel.active { display: block; animation: fadeIn 0.4s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Contenido de Tabs */
+    .sp-panel video { width: 100%; border-radius: 6px; display: block; }
+    .sp-panel img { width: 100%; border-radius: 6px; display: block; }
+
+    /* Tabla de Datos - ESTILO LIMPIO CORREGIDO */
+    .sp-data-table-wrap { overflow-x: auto; margin: 0 -0.5rem; }
+    .sp-data-table {
+      width: 100%; border-collapse: collapse; font-size: 0.9rem;
+    }
+    .sp-data-table th {
+      text-align: left; padding: 12px 10px;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--subtle);
+      border-bottom: 2px solid var(--border);
+    }
+    .sp-data-table td { 
+      padding: 12px 10px; 
+      border-bottom: 1px solid var(--border); 
+      vertical-align: middle; 
+    }
+    .sp-data-table tr:last-child td { border-bottom: none; }
+
+    .sp-td-etiqueta { }
+    .sp-etiqueta-inner { display: flex; align-items: center; gap: 10px; }
+    .sp-repo-badge {
+      font-size: 0.65rem; font-weight: 700; color: #fff;
+      padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+    }
+    .sp-aud-label { font-family: monospace; font-size: 0.85rem; color: var(--muted); }
+
+    .sp-td-icon { text-align: center; }
+    .sp-icon-link { font-size: 1.2rem; text-decoration: none !important; }
+    .sp-empty { opacity: 0.2; filter: grayscale(1); }
+
+    /* Descargas */
+    .sp-dl-instrucciones {
+      margin-top: 1.5rem; padding: 1rem;
+      background: var(--bg-off); border-radius: 8px;
+      font-size: 0.85rem; color: var(--muted); border: 1px solid var(--border);
+    }
+    .sp-dl-instrucciones code { background: #eee; padding: 2px 4px; border-radius: 3px; font-family: monospace; }
+
+    .sp-download-btns { display: flex; gap: 10px; margin-top: 1rem; flex-wrap: wrap; }
+    .sp-dl-btn {
+      flex: 1; min-width: 200px;
+      padding: 12px; background: var(--blue); color: #fff;
+      border: none; border-radius: 6px; font-family: var(--ff-body); font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .sp-dl-btn:hover { background: var(--blue-dark); }
+
+    /* Publicaciones */
+    .sp-ref {
+      font-size: 0.95rem; margin-bottom: 1.2rem; padding-left: 1rem; border-left: 2px solid var(--blue-light);
+    }
+    .sp-ref a { font-size: 0.85rem; word-break: break-all; display: block; margin-top: 0.2rem; }
+
+    /* Mapa */
+    #map {
+      height: 400px; width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--sand-border);
+      z-index: 1;
+    }
+
+    /* Leyenda del mapa */
+    .map-legend {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(4px);
+      padding: 10px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      color: var(--ink);
+      line-height: 1.6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      min-width: 130px;
+    }
+    .map-legend-title {
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--subtle);
+      margin-bottom: 4px;
+    }
+    .map-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .map-legend-dot {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .map-legend-sq {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 5rem; padding: 3rem 2rem;
+      background: var(--black); color: rgba(255,255,255,0.4);
+      text-align: center; font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">
+      <img src="../Imagenes/logo_nov2024.png" alt="Logo">
+      <span>Dataverso de Sonidos</span>
+    </a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="../index.html">Inicio</a> <span>/</span> <em>Dendropsophus bogerti</em>
+  </div>
+
+  <main class="sp-container">
+
+    <header class="sp-header">
+      <img src="../Imagenes/especies/especie_Dendropsophus_bogerti.png" alt="Dendropsophus bogerti">
+      <div class="sp-fam">Hylidae</div>
+      <h1>Dendropsophus bogerti</h1>
+      <div class="sp-auth"></div>
+    </header>
+
+    <div class="sp-section-label">Señal Acústica</div>
+
+    <div class="sp-tabs-container">
+      <div class="sp-tabs-nav">
+        <button class="sp-tab-btn active" onclick="openTab(event, 'tab-dyna')">Espectrograma Dinámico</button>
+        <button class="sp-tab-btn" onclick="openTab(event, 'tab-spec')">Espectrograma</button>
+      </div>
+      <div class="sp-tab-content">
+        <div id="tab-dyna" class="sp-panel active">
+          <video controls loop muted playsinline>
+            <source src="../Espectrogramas/dyna_Dendropsophus_bogerti.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+        </div>
+        <div id="tab-spec" class="sp-panel">
+          <img src="../Imagenes/specs/spec_Dendropsophus_bogerti.png" alt="Espectrograma de Dendropsophus bogerti">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="sp-section-label">Distribución Geográfica de los Datos</div>
+    <div id="map"></div>
+
+
+    <div class="sp-section-label">Disponibilidad de Datos</div>
+
+    <div class="sp-tabs-container">
+      <div class="sp-tabs-nav">
+        <button class="sp-tab-btn active" onclick="openTab(event, 'tab-data')">Registros y Descarga</button>
+        <button class="sp-tab-btn" onclick="openTab(event, 'tab-pubs')">Publicaciones</button>
+      </div>
+      <div class="sp-tab-content">
+        <div id="tab-data" class="sp-panel active">
+          
+      <div class="sp-data-table-wrap">
+        <table class="sp-data-table">
+          <thead>
+            <tr>
+              <th>Etiqueta</th>
+              <th title="Observación (iNaturalist / GBIF)">Obs.</th>
+              <th title="Audio Original">Audio</th>
+              <th title="Tabla de parámetros (txt)">Tabla</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">23835444</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/23835444" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/36346.wav?1556508967" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">31058723</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/31058723" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/45631.mp3?1566142659" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">58947903</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/58947903" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/135154.mp3?1599573242" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">91491267</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/91491267" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/292704.m4a?1629171779" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">94068934</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/94068934" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/302845.mp3?1631068643" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">131082048</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/131082048" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/521529.wav?1660664334" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">131087905</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/131087905" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/521536.mp3?1660665064" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">141114222</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/141114222" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/559213.m4a?1667608251" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">157978510</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/157978510" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/667754.m4a?1682837311" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">158933359</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/158933359" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/675432.mp3?1682983904" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">194953872</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/194953872" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/865751.m4a?1703652232" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">204165339</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/204165339" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/942133.m4a?1711560895" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">210139988</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/210139988" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/990167.m4a?1714225080" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">227403870</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/227403870" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1122212.mp3?1720220551" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">239810926</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/239810926" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1193236.m4a?1725466165" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">239853273</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/239853273" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1193440.m4a?1725479820" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">257595802</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/257595802" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1281005.m4a?1736175396" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">274139775</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/274139775" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1408212.m4a?1745701237" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">292628724</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/292628724" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1541190.m4a?1750863790" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">304406503</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/304406503" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1596125.m4a?1754545287" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">304420706</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/304420706" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1596202.m4a?1754553562" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">333311735</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/333311735" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1731722.wav?1767459267" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">336196352</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/336196352" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1750615.wav?1769402666" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">340525145</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/340525145" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1784939.mp3?1772242428" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#862609">Xeno-canto</span><span class="sp-aud-label">1083733</span></div></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1083733" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1083733/download" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sp-dl-instrucciones">
+        <strong>¿Cómo descargar todos los archivos?</strong>
+        <p>Los repositorios externos no permiten descargas masivas directas desde el navegador. Por eso, los botones generan un <em>script</em> que puedes ejecutar en la terminal de tu computador para descargar todos los archivos automáticamente en una carpeta.</p>
+        <ol style="margin-left: 1.5rem; margin-top: 10px;">
+          <li>Haz clic en el botón correspondiente (audios o tablas).</li>
+          <li>Se descargará un archivo <code>.sh</code> (Mac/Linux) o <code>.bat</code> (Windows).</li>
+          <li><strong>Mac/Linux:</strong> abre la Terminal, navega a la carpeta donde quieres que queden tus descargas, escribe bash, espacio, arrastra el archivo descargado a la ventana y presiona Enter.</li>
+          <li><strong>Windows:</strong> haz doble clic sobre el archivo <code>.bat</code> descargado.</li>
+          <li>Los archivos se guardarán en una carpeta con el nombre de la especie.</li>
+          <li><strong>Archivos de Figshare:</strong> estos se abrirán en el navegador y se guardarán en tu carpeta de Descargas. Muévelos manualmente a la carpeta de la especie.</li>
+        </ol>
+      </div>
+
+      <div class="sp-download-btns">
+        <button class="sp-dl-btn" onclick="descargarTodos(SP_URLS_AUDIO, 'audios')">
+          &#128196; Script para descargar audios
+        </button>
+        <button class="sp-dl-btn" onclick="descargarTodos(SP_URLS_TABLA, 'tablas')">
+          &#128196; Script para descargar tablas
+        </button>
+      </div>
+    
+        </div>
+        <div id="tab-pubs" class="sp-panel">
+                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Grupo Herpetológico de Antioquia — Universidad de Antioquia</p>
+    <p style="margin-top: 0.5rem; opacity: 0.5;">Medellín, Colombia</p>
+  </footer>
+
+
+  <script>
+    // 1. Gestión de Tabs
+    function openTab(evt, tabId) {
+      const container = evt.currentTarget.closest('.sp-tabs-container');
+
+      // Ocultar paneles del mismo contenedor
+      const panels = container.querySelectorAll('.sp-panel');
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Quitar clase active de botones del mismo contenedor
+      const buttons = container.querySelectorAll('.sp-tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      // Mostrar actual
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    // 2. Descargas Masivas (Scripts .sh / .bat)
+    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/36346.wav?1556508967", "https://static.inaturalist.org/sounds/45631.mp3?1566142659", "https://static.inaturalist.org/sounds/135154.mp3?1599573242", "https://static.inaturalist.org/sounds/292704.m4a?1629171779", "https://static.inaturalist.org/sounds/302845.mp3?1631068643", "https://static.inaturalist.org/sounds/521529.wav?1660664334", "https://static.inaturalist.org/sounds/521536.mp3?1660665064", "https://static.inaturalist.org/sounds/559213.m4a?1667608251", "https://static.inaturalist.org/sounds/667754.m4a?1682837311", "https://static.inaturalist.org/sounds/675432.mp3?1682983904", "https://static.inaturalist.org/sounds/865751.m4a?1703652232", "https://static.inaturalist.org/sounds/942133.m4a?1711560895", "https://static.inaturalist.org/sounds/990167.m4a?1714225080", "https://static.inaturalist.org/sounds/1122212.mp3?1720220551", "https://static.inaturalist.org/sounds/1193236.m4a?1725466165", "https://static.inaturalist.org/sounds/1193440.m4a?1725479820", "https://static.inaturalist.org/sounds/1281005.m4a?1736175396", "https://static.inaturalist.org/sounds/1408212.m4a?1745701237", "https://static.inaturalist.org/sounds/1541190.m4a?1750863790", "https://static.inaturalist.org/sounds/1596125.m4a?1754545287", "https://static.inaturalist.org/sounds/1596202.m4a?1754553562", "https://static.inaturalist.org/sounds/1731722.wav?1767459267", "https://static.inaturalist.org/sounds/1750615.wav?1769402666", "https://static.inaturalist.org/sounds/1784939.mp3?1772242428", "https://xeno-canto.org/1083733/download"];
+    const SP_URLS_TABLA = [];
+
+    function descargarTodos(urls, tipo) {
+      if (urls.length === 0) {
+        alert("No hay archivos disponibles para esta categoría.");
+        return;
+      }
+
+      const especie_slug = "Dendropsophus_bogerti";
+      const nombre_archivo = "descargar_" + especie_slug + "_" + tipo;
+
+      // Detectar sistema operativo
+      const isWin = navigator.platform.toLowerCase().includes("win");
+      const extension = isWin ? ".bat" : ".sh";
+
+      let content = "";
+      if (isWin) {
+        content = "@echo off\r\n";
+        content += "mkdir " + especie_slug + "_" + tipo + " 2>nul\r\n";
+        content += "cd " + especie_slug + "_" + tipo + "\r\n";
+        urls.forEach(u => {
+          const fname = u.split('/').pop().split('?')[0];
+          const isFigshare = u.includes("figshare.com");
+          const isIAVH     = u.includes("humboldt.org.co");
+          const isXenoCanto = u.includes("xeno-canto.org");
+          if (isFigshare) {
+            content += "echo.\r\n";
+            content += "echo Abriendo archivo de Figshare en el navegador...\r\n";
+            content += "echo Guardalo manualmente en esta carpeta cuando se descargue.\r\n";
+            content += "start \"" + u + "\"\r\n";
+          } else if (isIAVH) {
+            content += "curl -L -o \"" + fname + "\" -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://colecciones.humboldt.org.co/\" \"" + u + "\"\r\n";
+          } else if (isXenoCanto) {
+            content += "curl -L -O --remote-header-name -H \"User-Agent: Mozilla/5.0\" -H \"Referer: https://xeno-canto.org/\" \"" + u + "\"\r\n";
+          } else {
+            content += "curl -L -o \"" + fname + "\" \"" + u + "\"\r\n";
+          }
+        });
+        content += "echo.\r\n";
+        content += "echo Descarga completada en la carpeta " + especie_slug + "_" + tipo + "\r\n";
+        content += "pause";
+      } else {
+        content = "#!/bin/bash\n";
+        content += "mkdir -p " + especie_slug + "_" + tipo + "\n";
+        content += "cd " + especie_slug + "_" + tipo + "\n";
+        urls.forEach(u => {
+          const fname = u.split('/').pop().split('?')[0];
+          const isFigshare = u.includes("figshare.com");
+          const isIAVH     = u.includes("humboldt.org.co");
+          const isXenoCanto = u.includes("xeno-canto.org");
+          if (isFigshare) {
+            content += "echo ''\n";
+            content += "echo '⚠️  Archivo de Figshare: se abrirá en el navegador.'\n";
+            content += "echo '   Guárdalo manualmente en esta carpeta cuando se descargue.'\n";
+            content += "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then\n";
+            content += "  open \"" + u + "\"\n";
+            content += "else\n";
+            content += "  xdg-open \"" + u + "\"\n";
+            content += "fi\n";
+          } else if (isIAVH) {
+            content += "curl -L -o \"" + fname + "\" \\\n";
+            content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
+            content += "  -H \"Referer: https://colecciones.humboldt.org.co/\" \\\n";
+            content += "  \"" + u + "\";\n";
+          } else if (isXenoCanto) {
+            content += "curl -L -O --remote-header-name \\\n";
+            content += "  -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" \\\n";
+            content += "  -H \"Referer: https://xeno-canto.org/\" \\\n";
+            content += "  \"" + u + "\";\n";
+          } else {
+            content += "curl -L -o \"" + fname + "\" \"" + u + "\";\n";
+          }
+        });
+        content += "echo 'Descarga completada.'\n";
+      }
+
+      // Crear Blob y descargar
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = nombre_archivo + extension;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+
+    // 3. Mapa (Leaflet)
+    const puntos = [{"lat": 6.2708030504, "lng": -75.5629831198, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "23835444", "url": "https://static.inaturalist.org/sounds/36346.wav?1556508967", "voucher": false}, {"lat": 6.241549, "lng": -75.616091, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "31058723", "url": "https://static.inaturalist.org/sounds/45631.mp3?1566142659", "voucher": false}, {"lat": 6.0022267426, "lng": -75.2246698396, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "58947903", "url": "https://static.inaturalist.org/sounds/135154.mp3?1599573242", "voucher": false}, {"lat": 6.163548939, "lng": -75.6311203167, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "91491267", "url": "https://static.inaturalist.org/sounds/292704.m4a?1629171779", "voucher": false}, {"lat": 6.343318, "lng": -75.5034909722, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "94068934", "url": "https://static.inaturalist.org/sounds/302845.mp3?1631068643", "voucher": false}, {"lat": 6.129, "lng": -75.23, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "131082048", "url": "https://static.inaturalist.org/sounds/521529.wav?1660664334", "voucher": false}, {"lat": 6.9557810875, "lng": -75.4194830975, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "131087905", "url": "https://static.inaturalist.org/sounds/521536.mp3?1660665064", "voucher": false}, {"lat": 6.22420139, "lng": -75.58025121, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "141114222", "url": "https://static.inaturalist.org/sounds/559213.m4a?1667608251", "voucher": false}, {"lat": 6.1746740118, "lng": -75.5589832872, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "157978510", "url": "https://static.inaturalist.org/sounds/667754.m4a?1682837311", "voucher": false}, {"lat": 6.2752440246, "lng": -75.5918269604, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "158933359", "url": "https://static.inaturalist.org/sounds/675432.mp3?1682983904", "voucher": false}, {"lat": 6.2387476527, "lng": -75.6095000356, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "194953872", "url": "https://static.inaturalist.org/sounds/865751.m4a?1703652232", "voucher": false}, {"lat": 6.3331049937, "lng": -75.3070162609, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "204165339", "url": "https://static.inaturalist.org/sounds/942133.m4a?1711560895", "voucher": false}, {"lat": 6.3281891346, "lng": -75.6786231375, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "210139988", "url": "https://static.inaturalist.org/sounds/990167.m4a?1714225080", "voucher": false}, {"lat": 6.9189432608, "lng": -75.4082122049, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "227403870", "url": "https://static.inaturalist.org/sounds/1122212.mp3?1720220551", "voucher": false}, {"lat": 6.157919697, "lng": -75.6341797464, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "239810926", "url": "https://static.inaturalist.org/sounds/1193236.m4a?1725466165", "voucher": false}, {"lat": 6.157919697, "lng": -75.6341797464, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "239853273", "url": "https://static.inaturalist.org/sounds/1193440.m4a?1725479820", "voucher": false}, {"lat": 6.3330433461, "lng": -75.306777209, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "257595802", "url": "https://static.inaturalist.org/sounds/1281005.m4a?1736175396", "voucher": false}, {"lat": 6.40031, "lng": -75.5095483333, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "274139775", "url": "https://static.inaturalist.org/sounds/1408212.m4a?1745701237", "voucher": false}, {"lat": 6.3141531859, "lng": -75.32333415, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "292628724", "url": "https://static.inaturalist.org/sounds/1541190.m4a?1750863790", "voucher": false}, {"lat": 6.2402993811, "lng": -75.3073381777, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "304406503", "url": "https://static.inaturalist.org/sounds/1596125.m4a?1754545287", "voucher": false}, {"lat": 6.285815, "lng": -75.33422, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "304420706", "url": "https://static.inaturalist.org/sounds/1596202.m4a?1754553562", "voucher": false}, {"lat": 6.3140305527, "lng": -75.323545374, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "333311735", "url": "https://static.inaturalist.org/sounds/1731722.wav?1767459267", "voucher": false}, {"lat": 6.13233, "lng": -75.66865, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "336196352", "url": "https://static.inaturalist.org/sounds/1750615.wav?1769402666", "voucher": false}, {"lat": 6.1290213288, "lng": -75.251891166, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "340525145", "url": "https://static.inaturalist.org/sounds/1784939.mp3?1772242428", "voucher": false}, {"lat": 5.8884, "lng": -75.295, "col": "#862609", "repo": "Xeno-canto", "etiq": "1083733", "url": "https://xeno-canto.org/1083733/download", "voucher": false}];
+
+    if (puntos.length > 0) {
+      const map = L.map('map', {
+        scrollWheelZoom: false,
+        attributionControl: true
+      }).setView([puntos[0].lat, puntos[0].lng], 6);
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      }).addTo(map);
+
+      const latlngs = [];
+      puntos.forEach(p => {
+        const esVoucher = p.voucher === true;
+        const popup = p.url
+          ? `<b>${p.repo}</b><br><a href="${p.url}" target="_blank">${p.etiq}</a>`
+          : `<b>${p.repo}</b><br>${p.etiq}`;
+
+        if (esVoucher) {
+          const size = 16;
+          const icon = L.divIcon({
+            className: '',
+            html: `<div style="width:${size}px;height:${size}px;background:${p.col};border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 1px 4px rgba(0,0,0,0.15);border-radius:2px;"></div>`,
+            iconSize:    [size, size],
+            iconAnchor:  [size/2, size/2],
+            popupAnchor: [0, -(size/2 + 4)],
+          });
+          L.marker([p.lat, p.lng], { icon }).addTo(map).bindPopup(popup);
+        } else {
+          L.circleMarker([p.lat, p.lng], {
+            radius:      7,
+            fillColor:   p.col,
+            color:       "#fff",
+            weight:      2.5,
+            opacity:     1,
+            fillOpacity: 0.9
+          }).addTo(map).bindPopup(popup);
+        }
+
+        latlngs.push(L.latLng(p.lat, p.lng));
+      });
+
+      map.fitBounds(L.latLngBounds(latlngs).pad(0.3));
+
+      // ── Leyenda ──────────────────────────────────────────────────────────
+      const repos_visibles = [...new Set(puntos.map(p => p.repo))];
+      const REPO_COLORS_JS = {"CSA-IAVH": "#1F1F1E", "iNaturalist": "#8DBA47", "Figshare": "#5A6975", "Xeno-canto": "#862609"};
+      const legend = L.control({ position: 'bottomright' });
+      legend.onAdd = function() {
+        const div = L.DomUtil.create('div', 'map-legend');
+        let html = '<div class="map-legend-title">Repositorio</div>';
+        repos_visibles.forEach(repo => {
+          const col = REPO_COLORS_JS[repo] || '#888';
+          html += `<div class="map-legend-item">
+            <span class="map-legend-dot" style="background:${col};border:2px solid #fff"></span>
+            ${repo}
+          </div>`;
+        });
+        // Voucher
+        const hayVoucher = puntos.some(p => p.voucher);
+        if (hayVoucher) {
+          html += '<div class="map-legend-title" style="margin-top:8px">Forma</div>';
+          html += `<div class="map-legend-item">
+            <span class="map-legend-dot" style="background:#888;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.2)"></span>
+            Sin voucher
+          </div>`;
+          html += `<div class="map-legend-item">
+            <span class="map-legend-sq" style="background:#888;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.2)"></span>
+            Con voucher
+          </div>`;
+        }
+        div.innerHTML = html;
+        return div;
+      };
+      legend.addTo(map);
+
+    } else {
+      document.getElementById('map').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
