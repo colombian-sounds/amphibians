@@ -293,7 +293,7 @@
       <img src="../Imagenes/especies/especie_Nymphargus_rosada.png" alt="Nymphargus rosada">
       <div class="sp-fam">Centrolenidae</div>
       <h1>Nymphargus rosada</h1>
-      <div class="sp-auth"></div>
+      <div class="sp-auth">(Ruiz-Carranza and Lynch, 1995)</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -406,7 +406,11 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Duarte-Marín, S., Rada, M., Rivera-Correa, M., Caorsi, V., Barona, E., González-Durán, G., & Vargas-Salinas, F.</strong> (2022).
+        Tic, Tii and Trii calls: advertisement call descriptions for eight glass frogs from Colombia and analysis of the structure of auditory signals in Centrolenidae. <em>Bioacoustics - The International Journal of Animal Sound and Its Recording</em>. 32(2), 143–180 <a href="https://doi.org/10.1080/09524622.2022.2077833" target="_blank">https://doi.org/10.1080/09524622.2022.2077833</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -528,7 +532,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 5.0322222, "lng": -75.0533333, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1441", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1441/IAvH-CSA-1441.wav", "voucher": false}, {"lat": 5.4780555, "lng": -75.1122222, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1442", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1442/IAvH-CSA-1442.wav", "voucher": false}, {"lat": 5.4780555, "lng": -75.1122222, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1443", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1443/IAvH-CSA-1443.wav", "voucher": false}, {"lat": 7.0944444, "lng": -75.4842777, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1444", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1444/IAvH-CSA-1444.wav", "voucher": false}, {"lat": 7.0944444, "lng": -75.4842777, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1445", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1445/IAvH-CSA-1445.wav", "voucher": false}, {"lat": 4.8056736708, "lng": -75.1429470702, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "122751111", "url": "https://static.inaturalist.org/sounds/477980.mp3?1655777586", "voucher": false}];
+    const puntos = [{"lat": 5.0322222, "lng": -75.0533333, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1441", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1441/IAvH-CSA-1441.wav", "voucher": true}, {"lat": 5.4780555, "lng": -75.1122222, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1442", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1442/IAvH-CSA-1442.wav", "voucher": true}, {"lat": 5.4780555, "lng": -75.1122222, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1443", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1443/IAvH-CSA-1443.wav", "voucher": true}, {"lat": 7.0944444, "lng": -75.4842777, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1444", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1444/IAvH-CSA-1444.wav", "voucher": true}, {"lat": 7.0944444, "lng": -75.4842777, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1445", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1445/IAvH-CSA-1445.wav", "voucher": true}, {"lat": 4.8056736708, "lng": -75.1429470702, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "122751111", "url": "https://static.inaturalist.org/sounds/477980.mp3?1655777586", "voucher": false}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {

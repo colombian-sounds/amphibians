@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teratohyla pulverata — Dataverso de Sonidos</title>
+  <title>Centrolenidae — Dataverso de Sonidos</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -284,15 +284,15 @@
   </nav>
 
   <div class="breadcrumb">
-    <a href="../index.html">Inicio</a> <span>/</span> <em>Teratohyla pulverata</em>
+    <a href="../index.html">Inicio</a> <span>/</span> <em>Centrolenidae</em>
   </div>
 
   <main class="sp-container">
 
     <header class="sp-header">
-      <img src="../Imagenes/especies/especie_Teratohyla_pulverata.png" alt="Teratohyla pulverata">
+      <img src="../Imagenes/especies/especie_Centrolenidae.png" alt="Centrolenidae">
       <div class="sp-fam">Centrolenidae</div>
-      <h1>Teratohyla pulverata</h1>
+      <h1>Centrolenidae</h1>
       <div class="sp-auth"></div>
     </header>
 
@@ -306,12 +306,12 @@
       <div class="sp-tab-content">
         <div id="tab-dyna" class="sp-panel active">
           <video controls loop muted playsinline>
-            <source src="../Espectrogramas/dyna_Teratohyla_pulverata.mp4" type="video/mp4">
+            <source src="../Espectrogramas/dyna_Centrolenidae.mp4" type="video/mp4">
             Tu navegador no soporta video.
           </video>
         </div>
         <div id="tab-spec" class="sp-panel">
-          <img src="../Imagenes/specs/spec_Teratohyla_pulverata.png" alt="Espectrograma de Teratohyla pulverata">
+          <img src="../Imagenes/specs/spec_Centrolenidae.png" alt="Espectrograma de Centrolenidae">
         </div>
       </div>
     </div>
@@ -343,9 +343,15 @@
           </thead>
           <tbody>
         <tr>
-          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">218540169</span></div></td>
-          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/218540169" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
-          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1062500.wav?1716774078" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">149046687</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/149046687" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/599703.mp3?1676735364" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">250928881</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/250928881" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1246896.m4a?1731088487" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
           </tbody>
@@ -408,7 +414,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/1062500.wav?1716774078"];
+    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/599703.mp3?1676735364", "https://static.inaturalist.org/sounds/1246896.m4a?1731088487"];
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -417,7 +423,7 @@
         return;
       }
 
-      const especie_slug = "Teratohyla_pulverata";
+      const especie_slug = "Centrolenidae";
       const nombre_archivo = "descargar_" + especie_slug + "_" + tipo;
 
       // Detectar sistema operativo
@@ -498,7 +504,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 3.8490769576, "lng": -76.7964899312, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "218540169", "url": "https://static.inaturalist.org/sounds/1062500.wav?1716774078", "voucher": false}];
+    const puntos = [{"lat": 6.1879790551, "lng": -74.9932269752, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "149046687", "url": "https://static.inaturalist.org/sounds/599703.mp3?1676735364", "voucher": false}, {"lat": 3.3846313209, "lng": -76.6074009496, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "250928881", "url": "https://static.inaturalist.org/sounds/1246896.m4a?1731088487", "voucher": false}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {

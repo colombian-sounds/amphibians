@@ -293,7 +293,7 @@
       <img src="../Imagenes/especies/especie_Sachatamia_orejuela.png" alt="Sachatamia orejuela">
       <div class="sp-fam">Centrolenidae</div>
       <h1>Sachatamia orejuela</h1>
-      <div class="sp-auth"></div>
+      <div class="sp-auth">(Duellman and Burrowes, 1989)</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -348,6 +348,18 @@
           <td class="sp-td-icon"><a href="https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><a href="https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.Table.1.selections.txt" target="_blank" class="sp-icon-link" title="Ver tabla de parámetros">&#128196;</a></td>
         </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">13160012.v1</span></div></td>
+          <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.13160012.v1" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://brill.figshare.com/articles/media/Supplementary_material_to_BEH_3636/13160012/1?file=25309055" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">13160012.v1</span></div></td>
+          <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.13160012.v1" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://brill.figshare.com/articles/media/Supplementary_material_to_BEH_3636/13160012/1?file=25309058" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
           </tbody>
         </table>
       </div>
@@ -376,7 +388,15 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Duarte-Marín, S., Rada, M., Rivera-Correa, M., Caorsi, V., Barona, E., González-Durán, G., & Vargas-Salinas, F.</strong> (2022).
+        Tic, Tii and Trii calls: advertisement call descriptions for eight glass frogs from Colombia and analysis of the structure of auditory signals in Centrolenidae. <em>Bioacoustics - The International Journal of Animal Sound and Its Recording</em>. 32(2), 143–180 <a href="https://doi.org/10.1080/09524622.2022.2077833" target="_blank">https://doi.org/10.1080/09524622.2022.2077833</a>
+      </div>
+      <div class="sp-ref">
+        <strong>Brunner, R., & Guayasamin, J.</strong> (2020).
+        Nocturnal visual displays and call description of the cascade specialist glassfrog <em>Sachatamia orejuela</em>. <em>Behaviour</em>. 157(14-15), 1257-1268 <a href="https://doi.org/10.1163/1568539X-bja10048" target="_blank">https://doi.org/10.1163/1568539X-bja10048</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -408,7 +428,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.wav"];
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.wav", "https://brill.figshare.com/articles/media/Supplementary_material_to_BEH_3636/13160012/1?file=25309055", "https://brill.figshare.com/articles/media/Supplementary_material_to_BEH_3636/13160012/1?file=25309058"];
     const SP_URLS_TABLA = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.Table.1.selections.txt"];
 
     function descargarTodos(urls, tipo) {
@@ -498,7 +518,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 2.72222, "lng": -76.6469444, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1454", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.wav", "voucher": false}];
+    const puntos = [{"lat": 2.72222, "lng": -76.6469444, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1454", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1454/IAvH-CSA-1454.wav", "voucher": false}, {"lat": 0.167082, "lng": -78.871437, "col": "#5A6975", "repo": "Figshare", "etiq": "13160012.v1", "url": "https://brill.figshare.com/articles/media/Supplementary_material_to_BEH_3636/13160012/1?file=25309055", "voucher": false}, {"lat": 0.167082, "lng": -78.871437, "col": "#5A6975", "repo": "Figshare", "etiq": "13160012.v1", "url": "https://brill.figshare.com/articles/media/Supplementary_material_to_BEH_3636/13160012/1?file=25309058", "voucher": false}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {
