@@ -360,6 +360,27 @@
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1626068.m4a?1757068119" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
+<<<<<<< HEAD
+=======
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#862609">Xeno-canto</span><span class="sp-aud-label">1083971</span></div></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1083971" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1083971/download" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">212615997</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/212615997" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1010275.m4a?1714576896" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">92695735</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/92695735" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/297896.mp3?1630088573" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
           </tbody>
         </table>
       </div>
@@ -420,7 +441,11 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
+<<<<<<< HEAD
     const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/297896.mp3?1630088573", "https://static.inaturalist.org/sounds/1010275.m4a?1714576896", "https://static.inaturalist.org/sounds/1626068.m4a?1757068119"];
+=======
+    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/297896.mp3?1630088573", "https://static.inaturalist.org/sounds/1010275.m4a?1714576896", "https://static.inaturalist.org/sounds/1626068.m4a?1757068119", "https://xeno-canto.org/1083971/download", "https://static.inaturalist.org/sounds/1010275.m4a?1714576896", "https://static.inaturalist.org/sounds/297896.mp3?1630088573"];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -510,7 +535,11 @@
     }
 
     // 3. Mapa (Leaflet)
+<<<<<<< HEAD
     const puntos = [{"lat": 5.0624734534, "lng": -75.6862903868, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "92695735", "url": "https://static.inaturalist.org/sounds/297896.mp3?1630088573", "voucher": false}, {"lat": 5.6203315137, "lng": -75.6225338766, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "212615997", "url": "https://static.inaturalist.org/sounds/1010275.m4a?1714576896", "voucher": false}, {"lat": 4.8130179897, "lng": -75.8969887682, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "311661427", "url": "https://static.inaturalist.org/sounds/1626068.m4a?1757068119", "voucher": false}];
+=======
+    const puntos = [{"lat": 5.0624734534, "lng": -75.6862903868, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "92695735", "url": "https://static.inaturalist.org/sounds/297896.mp3?1630088573", "voucher": false}, {"lat": 5.6203315137, "lng": -75.6225338766, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "212615997", "url": "https://static.inaturalist.org/sounds/1010275.m4a?1714576896", "voucher": false}, {"lat": 4.8130179897, "lng": -75.8969887682, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "311661427", "url": "https://static.inaturalist.org/sounds/1626068.m4a?1757068119", "voucher": false}, {"lat": 3.862, "lng": -76.3492, "col": "#862609", "repo": "Xeno-canto", "etiq": "1083971", "url": "https://xeno-canto.org/1083971/download", "voucher": false}, {"lat": 5.62033, "lng": -75.62253, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "212615997", "url": "https://static.inaturalist.org/sounds/1010275.m4a?1714576896", "voucher": false}, {"lat": 5.06247, "lng": -75.68629, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "92695735", "url": "https://static.inaturalist.org/sounds/297896.mp3?1630088573", "voucher": false}];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
 
     if (puntos.length > 0) {
       const map = L.map('map', {

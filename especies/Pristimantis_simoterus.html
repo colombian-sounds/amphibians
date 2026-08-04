@@ -293,7 +293,11 @@
       <img src="../Imagenes/especies/especie_Pristimantis_simoterus.png" alt="Pristimantis simoterus">
       <div class="sp-fam">Craugastoridae</div>
       <h1>Pristimantis simoterus</h1>
+<<<<<<< HEAD
       <div class="sp-auth"></div>
+=======
+      <div class="sp-auth">(Lynch, 1980)</div>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -354,6 +358,15 @@
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1834070.m4a?1775050083" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
+<<<<<<< HEAD
+=======
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">25321708</span></div></td>
+          <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.25321708" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://figshare.com/articles/media/Pristimantis_simoterus_mp3/25321708/2?file=44758471" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
           </tbody>
         </table>
       </div>
@@ -382,7 +395,15 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
+<<<<<<< HEAD
                 <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+=======
+                <div class="sp-ref">
+        <strong>Duarte-Marín, Sebastián</strong> (2024).
+        <em>Pristimantis simoterus</em>.mp3.. <em>figshare. Media.</em>.  <a href="https://doi.org/10.6084/m9.figshare.25321708.v2" target="_blank">https://doi.org/10.6084/m9.figshare.25321708.v2</a>
+      </div>
+
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
         </div>
       </div>
     </div>
@@ -414,7 +435,11 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
+<<<<<<< HEAD
     const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/1259116.wav?1732887983", "https://static.inaturalist.org/sounds/1834070.m4a?1775050083"];
+=======
+    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/1259116.wav?1732887983", "https://static.inaturalist.org/sounds/1834070.m4a?1775050083", "https://figshare.com/articles/media/Pristimantis_simoterus_mp3/25321708/2?file=44758471"];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -504,7 +529,11 @@
     }
 
     // 3. Mapa (Leaflet)
+<<<<<<< HEAD
     const puntos = [{"lat": 4.9288925293, "lng": -75.3601168124, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "253509465", "url": "https://static.inaturalist.org/sounds/1259116.wav?1732887983", "voucher": false}, {"lat": 4.3675224901, "lng": -75.4494615175, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "346574851", "url": "https://static.inaturalist.org/sounds/1834070.m4a?1775050083", "voucher": false}];
+=======
+    const puntos = [{"lat": 4.9288925293, "lng": -75.3601168124, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "253509465", "url": "https://static.inaturalist.org/sounds/1259116.wav?1732887983", "voucher": false}, {"lat": 4.3675224901, "lng": -75.4494615175, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "346574851", "url": "https://static.inaturalist.org/sounds/1834070.m4a?1775050083", "voucher": false}, {"lat": 3.99631, "lng": -75.7565, "col": "#5A6975", "repo": "Figshare", "etiq": "25321708", "url": "https://figshare.com/articles/media/Pristimantis_simoterus_mp3/25321708/2?file=44758471", "voucher": true}];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
 
     if (puntos.length > 0) {
       const map = L.map('map', {

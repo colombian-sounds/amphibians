@@ -293,7 +293,11 @@
       <img src="../Imagenes/especies/especie_Pristimantis_zorro.png" alt="Pristimantis zorro">
       <div class="sp-fam">Craugastoridae</div>
       <h1>Pristimantis zorro</h1>
+<<<<<<< HEAD
       <div class="sp-auth"></div>
+=======
+      <div class="sp-auth">Rivera-Correa & Daza, 2020</div>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -354,6 +358,21 @@
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/915267.mp3?1709488490" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
+<<<<<<< HEAD
+=======
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#888">Fonozoo</span><span class="sp-aud-label">MHUAA8813</span></div></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+          <td class="sp-td-icon"><a href="https://www.fonozoo.com/fnz_detalles_registro.php?tipo_registro=2&id=22961#player22961" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#888">Fonozoo</span><span class="sp-aud-label">MRC1845</span></div></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+          <td class="sp-td-icon"><a href="https://www.fonozoo.com/fnz_detalles_registro.php?tipo_registro=2&id=22962" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
           </tbody>
         </table>
       </div>
@@ -382,7 +401,15 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
+<<<<<<< HEAD
                 <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+=======
+                <div class="sp-ref">
+        <strong>Rivera-Correa, M. and Daza, J.M.</strong> (2020).
+        Out of the blue: A new rain frog species of the genus Pristimantis (Anura: Craugastoridae) from the northern Cordillera Central in Colombia.. <em>Zootaxa</em>. 4838: 83–101. <a href="https://doi.org/10.11646/zootaxa.4838.1.4" target="_blank">https://doi.org/10.11646/zootaxa.4838.1.4</a>
+      </div>
+
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
         </div>
       </div>
     </div>
@@ -414,7 +441,11 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
+<<<<<<< HEAD
     const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34768/IAvH-CSA-34768.wav", "https://static.inaturalist.org/sounds/915267.mp3?1709488490"];
+=======
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34768/IAvH-CSA-34768.wav", "https://static.inaturalist.org/sounds/915267.mp3?1709488490", "https://www.fonozoo.com/fnz_detalles_registro.php?tipo_registro=2&id=22961#player22961", "https://www.fonozoo.com/fnz_detalles_registro.php?tipo_registro=2&id=22962"];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -504,7 +535,11 @@
     }
 
     // 3. Mapa (Leaflet)
+<<<<<<< HEAD
     const puntos = [{"lat": 6.29339, "lng": -75.13817, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34768", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34768/IAvH-CSA-34768.wav", "voucher": false}, {"lat": 6.2674500908, "lng": -75.1873306507, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "201154654", "url": "https://static.inaturalist.org/sounds/915267.mp3?1709488490", "voucher": false}];
+=======
+    const puntos = [{"lat": 6.29339, "lng": -75.13817, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34768", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34768/IAvH-CSA-34768.wav", "voucher": false}, {"lat": 6.2674500908, "lng": -75.1873306507, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "201154654", "url": "https://static.inaturalist.org/sounds/915267.mp3?1709488490", "voucher": false}, {"lat": 6.30199, "lng": -75.14165, "col": "#888", "repo": "Fonozoo", "etiq": "MHUAA8813", "url": "https://www.fonozoo.com/fnz_detalles_registro.php?tipo_registro=2&id=22961#player22961", "voucher": true}];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
 
     if (puntos.length > 0) {
       const map = L.map('map', {

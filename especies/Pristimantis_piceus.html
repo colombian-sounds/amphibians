@@ -293,7 +293,11 @@
       <img src="../Imagenes/especies/especie_Pristimantis_piceus.png" alt="Pristimantis piceus">
       <div class="sp-fam">Craugastoridae</div>
       <h1>Pristimantis piceus</h1>
+<<<<<<< HEAD
       <div class="sp-auth"></div>
+=======
+      <div class="sp-auth">(Lynch, Ruiz-Carranza, Ardila-Robayo, 1996)</div>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -348,6 +352,15 @@
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1254956.wav?1732233405" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
+<<<<<<< HEAD
+=======
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">25321702</span></div></td>
+          <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.25321702" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://figshare.com/articles/media/Pristimantis_piceus_mp3/25321702/2" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
           </tbody>
         </table>
       </div>
@@ -376,7 +389,15 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
+<<<<<<< HEAD
                 <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+=======
+                <div class="sp-ref">
+        <strong>Duarte-Marín, Sebastián</strong> (2024).
+        <em>Pristimantis piceus</em>.mp3.. <em>figshare. Media.</em>.  <a href="https://doi.org/10.6084/m9.figshare.25321702.v2" target="_blank">https://doi.org/10.6084/m9.figshare.25321702.v2</a>
+      </div>
+
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
         </div>
       </div>
     </div>
@@ -408,7 +429,11 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
+<<<<<<< HEAD
     const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/1254956.wav?1732233405"];
+=======
+    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/1254956.wav?1732233405", "https://figshare.com/articles/media/Pristimantis_piceus_mp3/25321702/2"];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -498,7 +523,11 @@
     }
 
     // 3. Mapa (Leaflet)
+<<<<<<< HEAD
     const puntos = [{"lat": 5.0216830683, "lng": -75.3611815461, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "252545879", "url": "https://static.inaturalist.org/sounds/1254956.wav?1732233405", "voucher": false}];
+=======
+    const puntos = [{"lat": 5.0216830683, "lng": -75.3611815461, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "252545879", "url": "https://static.inaturalist.org/sounds/1254956.wav?1732233405", "voucher": false}, {"lat": 4.344043, "lng": -75.618883, "col": "#5A6975", "repo": "Figshare", "etiq": "25321702", "url": "https://figshare.com/articles/media/Pristimantis_piceus_mp3/25321702/2", "voucher": true}];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
 
     if (puntos.length > 0) {
       const map = L.map('map', {

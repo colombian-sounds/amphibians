@@ -293,7 +293,11 @@
       <img src="../Imagenes/especies/especie_Hyloscirtus_antioquia.png" alt="Hyloscirtus antioquia">
       <div class="sp-fam">Hylidae</div>
       <h1>Hyloscirtus antioquia</h1>
+<<<<<<< HEAD
       <div class="sp-auth"></div>
+=======
+      <div class="sp-auth">Rivera-Correa and Faivovich, 2013</div>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -354,6 +358,15 @@
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/772808.mp3?1689743519" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
+<<<<<<< HEAD
+=======
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">27798693.v4</span></div></td>
+          <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.27798693.v4" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://figshare.com/articles/media/Hyloscirtus_antioquia/27798693/4?file=50570550" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
           </tbody>
         </table>
       </div>
@@ -382,7 +395,19 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
+<<<<<<< HEAD
                 <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+=======
+                <div class="sp-ref">
+        <strong>RIVERA CORREA, MAURICIO</strong> (2024).
+        Hyloscirtus_antioquia. <em>figshare. Media.</em>.  <a href="https://doi.org/10.6084/m9.figshare.27798693.v4" target="_blank">https://doi.org/10.6084/m9.figshare.27798693.v4</a>
+      </div>
+      <div class="sp-ref">
+        <strong>Rivera-Correa, M., Vargas-Salinas, F., Grant, T.</strong> (2017).
+        Statistical differences and biological implications: a comparative analysis of the advertisement calls of two Andean stream treefrogs (Hylidae: Hyloscirtus) and the evolution of acoustic characters.. <em>Salamandra</em>. 53: 237-244. <a href="https://www.salamandra-journal.com/index.php/contents/2017-vol-53/1827-rivera-correa-m-f-vargas-salinas-t-grant" target="_blank">https://www.salamandra-journal.com/index.php/contents/2017-vol-53/1827-rivera-correa-m-f-vargas-salinas-t-grant</a>
+      </div>
+
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
         </div>
       </div>
     </div>
@@ -414,7 +439,11 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
+<<<<<<< HEAD
     const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-30671/IAvH-CSA-30671.wav", "https://static.inaturalist.org/sounds/772808.mp3?1689743519"];
+=======
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-30671/IAvH-CSA-30671.wav", "https://static.inaturalist.org/sounds/772808.mp3?1689743519", "https://figshare.com/articles/media/Hyloscirtus_antioquia/27798693/4?file=50570550"];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -504,7 +533,11 @@
     }
 
     // 3. Mapa (Leaflet)
+<<<<<<< HEAD
     const puntos = [{"lat": 6.9, "lng": -75.5472222, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-30671", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-30671/IAvH-CSA-30671.wav", "voucher": false}, {"lat": 7.0350290729, "lng": -75.4464618686, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "173720412", "url": "https://static.inaturalist.org/sounds/772808.mp3?1689743519", "voucher": false}];
+=======
+    const puntos = [{"lat": 6.9, "lng": -75.5472222, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-30671", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-30671/IAvH-CSA-30671.wav", "voucher": false}, {"lat": 7.0350290729, "lng": -75.4464618686, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "173720412", "url": "https://static.inaturalist.org/sounds/772808.mp3?1689743519", "voucher": false}, {"lat": 6.33138888888888, "lng": -75.6361111111111, "col": "#5A6975", "repo": "Figshare", "etiq": "27798693.v4", "url": "https://figshare.com/articles/media/Hyloscirtus_antioquia/27798693/4?file=50570550", "voucher": true}];
+>>>>>>> da985e2df87d60997dd6018b62a6287210517a39
 
     if (puntos.length > 0) {
       const map = L.map('map', {
