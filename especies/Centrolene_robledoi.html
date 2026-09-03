@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centrolene robledoi — Dataverso de Sonidos</title>
+  <title>"Centrolene" robledoi — Dataverso de Sonidos</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -292,8 +292,8 @@
     <header class="sp-header">
       <img src="../Imagenes/especies/especie_Centrolene_robledoi.png" alt="Centrolene robledoi">
       <div class="sp-fam">Centrolenidae</div>
-      <h1>Centrolene robledoi</h1>
-      <div class="sp-auth"></div>
+      <h1>"Centrolene" robledoi</h1>
+      <div class="sp-auth">Ruiz-Carranza and Lynch, 1995</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -376,7 +376,11 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Duarte-Marín, S., Rada, M., Rivera-Correa, M., Caorsi, V., Barona, E., González-Durán, G., & Vargas-Salinas, F.</strong> (2022).
+        Tic, Tii and Trii calls: advertisement call descriptions for eight glass frogs from Colombia and analysis of the structure of auditory signals in Centrolenidae. <em>Bioacoustics - The International Journal of Animal Sound and Its Recording</em>. 32(2), 143–180 <a href="https://doi.org/10.1080/09524622.2022.2077833" target="_blank">https://doi.org/10.1080/09524622.2022.2077833</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -498,7 +502,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 3.3488888, "lng": -76.6469444, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1453", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1453/IAvH-CSA-1453.wav", "voucher": false}];
+    const puntos = [{"lat": 3.3488888, "lng": -76.6469444, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-1453", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-1453/IAvH-CSA-1453.wav", "voucher": true}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {

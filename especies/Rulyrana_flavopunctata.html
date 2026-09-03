@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centrolenidae — Dataverso de Sonidos</title>
+  <title>Rulyrana flavopunctata — Dataverso de Sonidos</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -284,16 +284,16 @@
   </nav>
 
   <div class="breadcrumb">
-    <a href="../index.html">Inicio</a> <span>/</span> <em>Centrolenidae</em>
+    <a href="../index.html">Inicio</a> <span>/</span> <em>Rulyrana flavopunctata</em>
   </div>
 
   <main class="sp-container">
 
     <header class="sp-header">
-      <img src="../Imagenes/especies/especie_Centrolenidae.png" alt="Centrolenidae">
+      <img src="../Imagenes/especies/especie_Rulyrana_flavopunctata.png" alt="Rulyrana flavopunctata">
       <div class="sp-fam">Centrolenidae</div>
-      <h1>Centrolenidae</h1>
-      <div class="sp-auth"></div>
+      <h1>Rulyrana flavopunctata</h1>
+      <div class="sp-auth">(Lynch and Duellman, 1973)</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -306,12 +306,12 @@
       <div class="sp-tab-content">
         <div id="tab-dyna" class="sp-panel active">
           <video controls loop muted playsinline>
-            <source src="../Espectrogramas/dyna_Centrolenidae.mp4" type="video/mp4">
+            <source src="../Espectrogramas/dyna_Rulyrana_flavopunctata.mp4" type="video/mp4">
             Tu navegador no soporta video.
           </video>
         </div>
         <div id="tab-spec" class="sp-panel">
-          <img src="../Imagenes/specs/spec_Centrolenidae.png" alt="Espectrograma de Centrolenidae">
+          <img src="../Imagenes/specs/spec_Rulyrana_flavopunctata.png" alt="Espectrograma de Rulyrana flavopunctata">
         </div>
       </div>
     </div>
@@ -343,15 +343,9 @@
           </thead>
           <tbody>
         <tr>
-          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">149046687</span></div></td>
-          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/149046687" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
-          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/599703.mp3?1676735364" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#1F1F1E">CSA-IAVH</span><span class="sp-aud-label">IAvH-CSA-34244</span></div></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
-        </tr>
-        <tr>
-          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">250928881</span></div></td>
-          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/250928881" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
-          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1246896.m4a?1731088487" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><a href="https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34244/IAvH-CSA-34244.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
           </tbody>
@@ -382,7 +376,11 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Mendoza-Henao, A. M., Duarte-Marin, S., and Rada, M</strong> (2021).
+        Advertisement calls of six glassfrog species in the Colombian Andes, and comments on priorities for future research and conservation. <em>Amphibian and Reptile Conservation</em>. 15: 156-171 <a href="https://archive.org/details/biostor-286491" target="_blank">https://archive.org/details/biostor-286491</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -414,7 +412,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["https://static.inaturalist.org/sounds/599703.mp3?1676735364", "https://static.inaturalist.org/sounds/1246896.m4a?1731088487"];
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34244/IAvH-CSA-34244.wav"];
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -423,7 +421,7 @@
         return;
       }
 
-      const especie_slug = "Centrolenidae";
+      const especie_slug = "Rulyrana_flavopunctata";
       const nombre_archivo = "descargar_" + especie_slug + "_" + tipo;
 
       // Detectar sistema operativo
@@ -504,7 +502,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 6.1879790551, "lng": -74.9932269752, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "149046687", "url": "https://static.inaturalist.org/sounds/599703.mp3?1676735364", "voucher": false}, {"lat": 3.3846313209, "lng": -76.6074009496, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "250928881", "url": "https://static.inaturalist.org/sounds/1246896.m4a?1731088487", "voucher": false}];
+    const puntos = [{"lat": 1.78935, "lng": -75.64883, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34244", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34244/IAvH-CSA-34244.wav", "voucher": false}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {
