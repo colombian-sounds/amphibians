@@ -532,8 +532,8 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
       }).addTo(map);
 
       const latlngs = [];
