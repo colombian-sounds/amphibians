@@ -271,6 +271,7 @@
       background: var(--black); color: rgba(255,255,255,0.4);
       text-align: center; font-size: 0.8rem;
     }
+    .leaflet-tile-pane{filter:grayscale(1) brightness(1.12) contrast(0.9) opacity(0.95);}
   </style>
 </head>
 
@@ -623,8 +624,8 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
       }).addTo(map);
 
       const latlngs = [];
