@@ -271,7 +271,6 @@
       background: var(--black); color: rgba(255,255,255,0.4);
       text-align: center; font-size: 0.8rem;
     }
-    .leaflet-tile-pane{filter:grayscale(1) brightness(1.12) contrast(0.9) opacity(0.95);}
   </style>
 </head>
 
@@ -294,7 +293,7 @@
       <img src="../Imagenes/especies/especie_Pristimantis_bogotensis.png" alt="Pristimantis bogotensis">
       <div class="sp-fam">Craugastoridae</div>
       <h1>Pristimantis bogotensis</h1>
-      <div class="sp-auth"></div>
+      <div class="sp-auth">(Peters, 1863)</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -404,12 +403,6 @@
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
         <tr>
-          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">185023910</span></div></td>
-          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/185023910" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
-          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/819605.m4a?1695745981" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
-          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
-        </tr>
-        <tr>
           <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">256273732</span></div></td>
           <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/256273732" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1273456.m4a?1735224739" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
@@ -419,6 +412,18 @@
           <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">331791211</span></div></td>
           <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/331791211" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
           <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1722683.m4a?1766489742" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#862609">Xeno-canto</span><span class="sp-aud-label">1177848</span></div></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1177848" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1177848/download" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#862609">Xeno-canto</span><span class="sp-aud-label">1107233</span></div></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1107233" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1107233/download" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
           </tbody>
@@ -449,7 +454,11 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Bernal, X., Guzmán, F.</strong> (1999).
+        The advertisement calls of three Eleutherodactylus species (Anura: Leptodactylidae) in a Colombian highland community.. <em>Revista de la Academia Colombiana de Ciencias Exactas, Físicas y Naturales</em>. 23: 261-264. <a href="https://biblioteca.accefyn.org.co/cgi-bin/koha/opac-detail.pl?biblionumber=4013" target="_blank">https://biblioteca.accefyn.org.co/cgi-bin/koha/opac-detail.pl?biblionumber=4013</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -481,7 +490,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20275/IAvH-CSA-20275.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36664/IAvH-CSA-36664.wav", "https://static.inaturalist.org/sounds/183071.m4a?1617754709", "https://static.inaturalist.org/sounds/223502.wav?1621199769", "https://static.inaturalist.org/sounds/315496.m4a?1633996510", "https://static.inaturalist.org/sounds/589407.m4a?1674815581", "https://static.inaturalist.org/sounds/590515.m4a?1675034481", "https://static.inaturalist.org/sounds/592874.m4a?1675554253", "https://static.inaturalist.org/sounds/598418.wav?1676521005", "https://static.inaturalist.org/sounds/609479.m4a?1678071840", "https://static.inaturalist.org/sounds/819605.m4a?1695745981", "https://static.inaturalist.org/sounds/1273456.m4a?1735224739", "https://static.inaturalist.org/sounds/1722683.m4a?1766489742"];
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20275/IAvH-CSA-20275.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36664/IAvH-CSA-36664.wav", "https://static.inaturalist.org/sounds/183071.m4a?1617754709", "https://static.inaturalist.org/sounds/223502.wav?1621199769", "https://static.inaturalist.org/sounds/315496.m4a?1633996510", "https://static.inaturalist.org/sounds/589407.m4a?1674815581", "https://static.inaturalist.org/sounds/590515.m4a?1675034481", "https://static.inaturalist.org/sounds/592874.m4a?1675554253", "https://static.inaturalist.org/sounds/598418.wav?1676521005", "https://static.inaturalist.org/sounds/609479.m4a?1678071840", "https://static.inaturalist.org/sounds/1273456.m4a?1735224739", "https://static.inaturalist.org/sounds/1722683.m4a?1766489742", "https://xeno-canto.org/1177848/download", "https://xeno-canto.org/1107233/download"];
     const SP_URLS_TABLA = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36664/IAvH-CSA-36664.txt"];
 
     function descargarTodos(urls, tipo) {
@@ -571,7 +580,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 4.656952, "lng": -73.917122, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-20275", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20275/IAvH-CSA-20275.wav", "voucher": false}, {"lat": 4.8409, "lng": -74.34106, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-36664", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36664/IAvH-CSA-36664.wav", "voucher": false}, {"lat": 4.8350757431, "lng": -73.8905369863, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "71581777", "url": "https://static.inaturalist.org/sounds/183071.m4a?1617754709", "voucher": false}, {"lat": 5.0664408347, "lng": -73.6451859077, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "79061683", "url": "https://static.inaturalist.org/sounds/223502.wav?1621199769", "voucher": false}, {"lat": 4.6492945401, "lng": -74.0994797217, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "97956525", "url": "https://static.inaturalist.org/sounds/315496.m4a?1633996510", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "147449881", "url": "https://static.inaturalist.org/sounds/589407.m4a?1674815581", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "147655473", "url": "https://static.inaturalist.org/sounds/590515.m4a?1675034481", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "148058458", "url": "https://static.inaturalist.org/sounds/592874.m4a?1675554253", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "148877357", "url": "https://static.inaturalist.org/sounds/598418.wav?1676521005", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "150377674", "url": "https://static.inaturalist.org/sounds/609479.m4a?1678071840", "voucher": false}, {"lat": 4.6606089157, "lng": -74.1246151249, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "185023910", "url": "https://static.inaturalist.org/sounds/819605.m4a?1695745981", "voucher": false}, {"lat": 4.6692870302, "lng": -74.0402867272, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "256273732", "url": "https://static.inaturalist.org/sounds/1273456.m4a?1735224739", "voucher": false}, {"lat": 4.5819691257, "lng": -74.0923568857, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "331791211", "url": "https://static.inaturalist.org/sounds/1722683.m4a?1766489742", "voucher": false}];
+    const puntos = [{"lat": 4.656952, "lng": -73.917122, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-20275", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20275/IAvH-CSA-20275.wav", "voucher": false}, {"lat": 4.8409, "lng": -74.34106, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-36664", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36664/IAvH-CSA-36664.wav", "voucher": false}, {"lat": 4.8350757431, "lng": -73.8905369863, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "71581777", "url": "https://static.inaturalist.org/sounds/183071.m4a?1617754709", "voucher": false}, {"lat": 5.0664408347, "lng": -73.6451859077, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "79061683", "url": "https://static.inaturalist.org/sounds/223502.wav?1621199769", "voucher": false}, {"lat": 4.6492945401, "lng": -74.0994797217, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "97956525", "url": "https://static.inaturalist.org/sounds/315496.m4a?1633996510", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "147449881", "url": "https://static.inaturalist.org/sounds/589407.m4a?1674815581", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "147655473", "url": "https://static.inaturalist.org/sounds/590515.m4a?1675034481", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "148058458", "url": "https://static.inaturalist.org/sounds/592874.m4a?1675554253", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "148877357", "url": "https://static.inaturalist.org/sounds/598418.wav?1676521005", "voucher": false}, {"lat": 5.026003, "lng": -74.0300122, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "150377674", "url": "https://static.inaturalist.org/sounds/609479.m4a?1678071840", "voucher": false}, {"lat": 4.6692870302, "lng": -74.0402867272, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "256273732", "url": "https://static.inaturalist.org/sounds/1273456.m4a?1735224739", "voucher": false}, {"lat": 4.5819691257, "lng": -74.0923568857, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "331791211", "url": "https://static.inaturalist.org/sounds/1722683.m4a?1766489742", "voucher": false}, {"lat": 4.5425, "lng": -74.0709, "col": "#862609", "repo": "Xeno-canto", "etiq": "1177848", "url": "https://xeno-canto.org/1177848/download", "voucher": false}, {"lat": 4.8811, "lng": -74.2896, "col": "#862609", "repo": "Xeno-canto", "etiq": "1107233", "url": "https://xeno-canto.org/1107233/download", "voucher": true}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {
@@ -579,8 +588,8 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap'
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
       }).addTo(map);
 
       const latlngs = [];

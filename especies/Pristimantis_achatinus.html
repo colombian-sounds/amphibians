@@ -271,7 +271,6 @@
       background: var(--black); color: rgba(255,255,255,0.4);
       text-align: center; font-size: 0.8rem;
     }
-    .leaflet-tile-pane{filter:grayscale(1) brightness(1.12) contrast(0.9) opacity(0.95);}
   </style>
 </head>
 
@@ -294,7 +293,7 @@
       <img src="../Imagenes/especies/especie_Pristimantis_achatinus.png" alt="Pristimantis achatinus">
       <div class="sp-fam">Craugastoridae</div>
       <h1>Pristimantis achatinus</h1>
-      <div class="sp-auth"></div>
+      <div class="sp-auth">(Boulenger, 1898)</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -392,15 +391,21 @@
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
         <tr>
-          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">316700894</span></div></td>
-          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/316700894" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
-          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/1648909.wav?1758882593" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#8DBA47">iNaturalist</span><span class="sp-aud-label">372118316</span></div></td>
+          <td class="sp-td-icon"><a href="https://www.inaturalist.org/observations/372118316" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://static.inaturalist.org/sounds/2024309.mp3?1781564669" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
         <tr>
           <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#862609">Xeno-canto</span><span class="sp-aud-label">1069624</span></div></td>
           <td class="sp-td-icon"><a href="https://xeno-canto.org/1069624" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
           <td class="sp-td-icon"><a href="https://xeno-canto.org/1069624/download" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#5A6975">Figshare</span><span class="sp-aud-label">25321678</span></div></td>
+          <td class="sp-td-icon"><a href="https://doi.org/10.6084/m9.figshare.25321678" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://figshare.com/articles/media/Pristimantis_achatinus_mp3/25321678?file=44758423" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
           </tbody>
@@ -431,7 +436,11 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Lynch, John D., Myers, Charles W.</strong> (1983).
+        Frogs of the fitzingeri group of Eleutherodactylus in eastern Panama and Chocoan South America (Leptodactylidae). <em>Bulletin of the American Museum of Natural History</em>. 175(5), 481-572 <a href="https://digitallibrary.amnh.org/items/45fba656-9171-4036-b6d6-5be24a21a401" target="_blank">https://digitallibrary.amnh.org/items/45fba656-9171-4036-b6d6-5be24a21a401</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -463,7 +472,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34478/IAvH-CSA-34478.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34482/IAvH-CSA-34482.wav", "https://static.inaturalist.org/sounds/40682.m4a?1559791078", "https://static.inaturalist.org/sounds/153962.m4a?1608161481", "https://static.inaturalist.org/sounds/445441.wav?1653108638", "https://static.inaturalist.org/sounds/772809.mp3?1689743670", "https://static.inaturalist.org/sounds/813834.m4a?1694912193", "https://static.inaturalist.org/sounds/1044789.wav?1716045704", "https://static.inaturalist.org/sounds/1648909.wav?1758882593", "https://xeno-canto.org/1069624/download"];
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34478/IAvH-CSA-34478.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34482/IAvH-CSA-34482.wav", "https://static.inaturalist.org/sounds/40682.m4a?1559791078", "https://static.inaturalist.org/sounds/153962.m4a?1608161481", "https://static.inaturalist.org/sounds/445441.wav?1653108638", "https://static.inaturalist.org/sounds/772809.mp3?1689743670", "https://static.inaturalist.org/sounds/813834.m4a?1694912193", "https://static.inaturalist.org/sounds/1044789.wav?1716045704", "https://static.inaturalist.org/sounds/2024309.mp3?1781564669", "https://xeno-canto.org/1069624/download", "https://figshare.com/articles/media/Pristimantis_achatinus_mp3/25321678?file=44758423"];
     const SP_URLS_TABLA = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34478/IAvH-CSA-34478.Table.1.selections.txt", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34482/IAvH-CSA-34482.Table.1.selections.txt"];
 
     function descargarTodos(urls, tipo) {
@@ -553,7 +562,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 3.8391, "lng": -77.1979, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34478", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34478/IAvH-CSA-34478.wav", "voucher": false}, {"lat": 3.8443, "lng": -76.7902, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34482", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34482/IAvH-CSA-34482.wav", "voucher": false}, {"lat": 5.7277316944, "lng": -75.3891601389, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "26476080", "url": "https://static.inaturalist.org/sounds/40682.m4a?1559791078", "voucher": false}, {"lat": 5.9229963905, "lng": -76.3819732144, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "66675072", "url": "https://static.inaturalist.org/sounds/153962.m4a?1608161481", "voucher": false}, {"lat": 5.7857893865, "lng": -76.0161005248, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "117964854", "url": "https://static.inaturalist.org/sounds/445441.wav?1653108638", "voucher": false}, {"lat": 5.618534, "lng": -75.835824, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "173720413", "url": "https://static.inaturalist.org/sounds/772809.mp3?1689743670", "voucher": false}, {"lat": 1.3599675004, "lng": -78.1754802167, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "183597209", "url": "https://static.inaturalist.org/sounds/813834.m4a?1694912193", "voucher": false}, {"lat": 3.8443289, "lng": -76.7901594, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "216545283", "url": "https://static.inaturalist.org/sounds/1044789.wav?1716045704", "voucher": false}, {"lat": 4.7341645138, "lng": -75.5890736729, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "316700894", "url": "https://static.inaturalist.org/sounds/1648909.wav?1758882593", "voucher": false}, {"lat": 1.3001, "lng": -78.0834, "col": "#862609", "repo": "Xeno-canto", "etiq": "1069624", "url": "https://xeno-canto.org/1069624/download", "voucher": false}];
+    const puntos = [{"lat": 3.8391, "lng": -77.1979, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34478", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34478/IAvH-CSA-34478.wav", "voucher": false}, {"lat": 3.8443, "lng": -76.7902, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-34482", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-34482/IAvH-CSA-34482.wav", "voucher": false}, {"lat": 5.7277316944, "lng": -75.3891601389, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "26476080", "url": "https://static.inaturalist.org/sounds/40682.m4a?1559791078", "voucher": false}, {"lat": 5.9229963905, "lng": -76.3819732144, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "66675072", "url": "https://static.inaturalist.org/sounds/153962.m4a?1608161481", "voucher": false}, {"lat": 5.7857893865, "lng": -76.0161005248, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "117964854", "url": "https://static.inaturalist.org/sounds/445441.wav?1653108638", "voucher": false}, {"lat": 5.618534, "lng": -75.835824, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "173720413", "url": "https://static.inaturalist.org/sounds/772809.mp3?1689743670", "voucher": false}, {"lat": 1.3599675004, "lng": -78.1754802167, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "183597209", "url": "https://static.inaturalist.org/sounds/813834.m4a?1694912193", "voucher": false}, {"lat": 3.8443289, "lng": -76.7901594, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "216545283", "url": "https://static.inaturalist.org/sounds/1044789.wav?1716045704", "voucher": false}, {"lat": 6.23107, "lng": -75.56745, "col": "#8DBA47", "repo": "iNaturalist", "etiq": "372118316", "url": "https://static.inaturalist.org/sounds/2024309.mp3?1781564669", "voucher": false}, {"lat": 1.3001, "lng": -78.0834, "col": "#862609", "repo": "Xeno-canto", "etiq": "1069624", "url": "https://xeno-canto.org/1069624/download", "voucher": false}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {
@@ -561,8 +570,8 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap'
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
       }).addTo(map);
 
       const latlngs = [];
