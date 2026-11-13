@@ -305,7 +305,7 @@
       </div>
       <div class="sp-tab-content">
         <div id="tab-dyna" class="sp-panel active">
-          <video controls loop muted playsinline>
+          <video controls loop playsinline preload="metadata">
             <source src="../Espectrogramas/dyna_Pristimantis_bogotensis.mp4" type="video/mp4">
             Tu navegador no soporta video.
           </video>
@@ -588,9 +588,9 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=cb1_57v7_1_4bab4b85558190383ba321d0', {
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
 
       const latlngs = [];
