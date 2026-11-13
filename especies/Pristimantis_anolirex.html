@@ -528,9 +528,9 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=cb1_57v7_1_4bab4b85558190383ba321d0', {
         maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
       }).addTo(map);
 
       const latlngs = [];
