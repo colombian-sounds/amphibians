@@ -271,7 +271,6 @@
       background: var(--black); color: rgba(255,255,255,0.4);
       text-align: center; font-size: 0.8rem;
     }
-    .leaflet-tile-pane{filter:grayscale(1) brightness(1.12) contrast(0.9) opacity(0.95);}
   </style>
 </head>
 
@@ -294,7 +293,7 @@
       <img src="../Imagenes/especies/especie_Pristimantis_anolirex.png" alt="Pristimantis anolirex">
       <div class="sp-fam">Craugastoridae</div>
       <h1>Pristimantis anolirex</h1>
-      <div class="sp-auth"></div>
+      <div class="sp-auth">(Lynch, 1983)</div>
     </header>
 
     <div class="sp-section-label">Señal Acústica</div>
@@ -361,6 +360,12 @@
           <td class="sp-td-icon"><a href="https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36554/IAvH-CSA-36554.wav" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
           <td class="sp-td-icon"><span class="sp-empty">—</span></td>
         </tr>
+        <tr>
+          <td class="sp-td-etiqueta"><div class="sp-etiqueta-inner"><span class="sp-repo-badge" style="background:#862609">Xeno-canto</span><span class="sp-aud-label">1103957</span></div></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1103957" target="_blank" class="sp-icon-link" title="Ver observación">&#128279;</a></td>
+          <td class="sp-td-icon"><a href="https://xeno-canto.org/1103957/download" target="_blank" class="sp-icon-link" title="Descargar audio">&#127925;</a></td>
+          <td class="sp-td-icon"><span class="sp-empty">—</span></td>
+        </tr>
           </tbody>
         </table>
       </div>
@@ -389,7 +394,11 @@
     
         </div>
         <div id="tab-pubs" class="sp-panel">
-                <p style="color:var(--subtle);font-size:0.9rem;">Sin publicaciones registradas.</p>
+                <div class="sp-ref">
+        <strong>Darío Arrieta-García, Giovany Díaz, Laura J. Ortiz & Aldemar A. Acevedo.</strong> (2025).
+        Acoustic ecology of anuran communities across Andean biomes: unveiling the soundscape of Northeastern Colombia. <em>Bioacoustics</em>. 34(1):66-87 <a href="https://www.tandfonline.com/doi/full/10.1080/09524622.2025.2461527" target="_blank">https://www.tandfonline.com/doi/full/10.1080/09524622.2025.2461527</a>
+      </div>
+
         </div>
       </div>
     </div>
@@ -421,7 +430,7 @@
     }
 
     // 2. Descargas Masivas (Scripts .sh / .bat)
-    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20103/IAvH-CSA-20103.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20108/IAvH-CSA-20108.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36554/IAvH-CSA-36554.wav"];
+    const SP_URLS_AUDIO = ["https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20103/IAvH-CSA-20103.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20108/IAvH-CSA-20108.wav", "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36554/IAvH-CSA-36554.wav", "https://xeno-canto.org/1103957/download"];
     const SP_URLS_TABLA = [];
 
     function descargarTodos(urls, tipo) {
@@ -511,7 +520,7 @@
     }
 
     // 3. Mapa (Leaflet)
-    const puntos = [{"lat": 7.005028, "lng": -72.86925, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-20103", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20103/IAvH-CSA-20103.wav", "voucher": false}, {"lat": 7.005028, "lng": -72.86925, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-20108", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20108/IAvH-CSA-20108.wav", "voucher": false}, {"lat": 7.378969, "lng": -72.929676, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-36554", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36554/IAvH-CSA-36554.wav", "voucher": false}];
+    const puntos = [{"lat": 7.005028, "lng": -72.86925, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-20103", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20103/IAvH-CSA-20103.wav", "voucher": false}, {"lat": 7.005028, "lng": -72.86925, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-20108", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-20108/IAvH-CSA-20108.wav", "voucher": false}, {"lat": 7.378969, "lng": -72.929676, "col": "#1F1F1E", "repo": "CSA-IAVH", "etiq": "IAvH-CSA-36554", "url": "https://colecciones.humboldt.org.co/rec/sonidos/IAvH-CSA-36554/IAvH-CSA-36554.wav", "voucher": false}, {"lat": 7.0053, "lng": -72.8686, "col": "#862609", "repo": "Xeno-canto", "etiq": "1103957", "url": "https://xeno-canto.org/1103957/download", "voucher": true}];
 
     if (puntos.length > 0) {
       const map = L.map('map', {
@@ -519,8 +528,9 @@
         attributionControl: true
       }).setView([puntos[0].lat, puntos[0].lng], 6);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap'
+      L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=cb1_57v7_1_4bab4b85558190383ba321d0', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
       }).addTo(map);
 
       const latlngs = [];
