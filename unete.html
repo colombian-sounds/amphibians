@@ -83,6 +83,20 @@
     .metadata-note p{font-size:0.9rem;color:var(--ink);line-height:1.7}
     .metadata-note a{color:var(--blue-dark);font-weight:600}
 
+    /* ── Subsecciones de contribución ── */
+    .subsection-title{font-family:var(--ff-display);font-size:1.05rem;font-weight:600;color:var(--blue-dark);margin:0.5rem 0 0.8rem}
+    .subsection + .subsection{margin-top:2.5rem}
+
+    /* ── Pasantes ── */
+    .interns-label{font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--subtle);margin:1.8rem 0 0.8rem}
+    .intern-card{display:flex;gap:1.4rem;align-items:flex-start;padding:1.3rem 1.4rem;background:var(--bg-off);border:0.5px solid var(--border);border-radius:var(--radius);max-width:720px}
+    .intern-card + .intern-card{margin-top:1rem}
+    .intern-photo{width:104px;height:104px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid #fff;box-shadow:0 0 0 1px var(--border)}
+    .intern-name{font-family:var(--ff-display);font-size:1.05rem;font-weight:600;color:var(--black);line-height:1.3}
+    .intern-email{display:inline-block;font-size:0.85rem;font-weight:600;margin:2px 0 0.6rem}
+    .intern-text{font-size:0.95rem;color:var(--muted);line-height:1.75}
+    .intern-text p + p{margin-top:0.6rem}
+
     /* ── CTA ── */
     .cta-block{margin-top:3rem;padding:1.5rem 1.8rem;background:var(--bg-off);border-radius:var(--radius);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     .cta-text{font-size:0.97rem;color:var(--ink);line-height:1.6}
@@ -115,6 +129,7 @@
       .container{padding:0 1.2rem}
       .step{flex-direction:column;gap:0.5rem}
       .step-num{font-size:1.8rem;min-width:auto}
+      .intern-card{flex-direction:column;align-items:center;text-align:center}
       .footer-inner{grid-template-columns:1fr;gap:1.5rem}
       .footer-credits{text-align:left}
     }
@@ -170,6 +185,9 @@
       <!-- Cómo contribuir -->
       <div class="section-block">
         <h2 class="section-title">Cómo contribuir</h2>
+
+        <div class="subsection">
+        <h3 class="subsection-title">¿Cómo contribuir con datos?</h3>
         <div class="steps">
 
           <div class="step">
@@ -220,6 +238,27 @@
             </div>
           </div>
 
+        </div>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">¿Cómo contribuir con el sitio?</h3>
+          <p class="body-text">El Dataverso no es solo un repositorio de visualización: también es un espacio de formación. Invitamos a jóvenes investigadores —estudiantes de pregrado y posgrado, pasantes y tesistas— a participar en la construcción del sitio, curando y redactando contenido como las fichas de especies, revisando datos y proponiendo nuevas visualizaciones.</p>
+          <p class="body-text">Al trabajar de cerca con los cantos, sus metadatos y su distribución geográfica, los participantes tienen la oportunidad de descubrir patrones y formular sus propias preguntas de investigación a partir de los datos visualizados en el Dataverso. Si te interesa hacer una pasantía o colaborar con contenido, <a href="mailto:juanm.daza@udea.edu.co">escríbenos</a>.</p>
+
+          <div class="interns-label">Pasantes</div>
+
+          <div class="intern-card">
+            <img class="intern-photo" src="Imagenes/valeria.png" alt="Valeria Rangel">
+            <div>
+              <div class="intern-name">Valeria Rangel</div>
+              <a class="intern-email" href="mailto:valeriarangel0304@gmail.com">valeriarangel0304@gmail.com</a>
+              <div class="intern-text">
+                <p>Valeria Rangel, estudiante del pregrado de Biología de la Pontificia Universidad Javeriana en Bogotá, desarrolló su pasantía en el Dataverso con el profesor Juan M. Daza del <a href="https://www.grupoherpetologicodeantioquia.org" target="_blank">Grupo Herpetológico de Antioquia</a>, donde contribuyó con la curaduría y recopilación del contenido para las fichas de las especies de la familia Centrolenidae.</p>
+                <p>Adicionalmente, el Dataverso le ayudó a Valeria a familiarizarse con el entrenamiento e implementación de algoritmos de inteligencia artificial para la identificación de ranas, como una herramienta de apropiación social del conocimiento.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
